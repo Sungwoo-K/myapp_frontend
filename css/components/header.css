@@ -1,0 +1,29 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+header form {
+  display: flex;
+  gap: 10px;
+}
+
+header section:nth-of-type(1) {
+  display: flex;
+  flex-grow: 2;
+}
+
+header section:nth-of-type(2) {
+  display: flex;
+  justify-content: center;
+  flex-grow: 6;
+}
+
+header section:nth-of-type(3) {
+  display: flex;
+  justify-content: center;
+  flex-grow: 2;
+}
