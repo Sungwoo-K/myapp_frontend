@@ -1,5 +1,14 @@
 /* Config */
 @import "./config/reset.css";
+@import "./config/variables.css";
 
 /* Components */
 @import "./components/header.css";
+@import "./components/navigationBar.css";
+
+body {
+}
+
+main {
+  display: flex;
+}
