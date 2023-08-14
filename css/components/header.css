@@ -31,6 +31,10 @@ header section:nth-of-type(1) article:nth-of-type(1) {
   text-align: center;
 }
 
+header section:nth-of-type(1) article:nth-of-type(1) > input {
+  display: none;
+}
+
 header section:nth-of-type(1) article:nth-of-type(1):hover {
   background-color: #e5e5e5;
 }
@@ -43,7 +47,7 @@ header section:nth-of-type(1) article:nth-of-type(2) {
   align-items: center;
   width: 135px;
   border-radius: 8px;
-  margin-left: 50px;
+  margin-left: 30px;
 }
 
 header section:nth-of-type(2) {
