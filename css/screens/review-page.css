@@ -6,9 +6,82 @@ main > section {
 }
 
 main > section article:nth-of-type(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 40px;
+  padding-right: 40px;
   border-radius: 10px;
   background-color: black;
   height: 55%;
+}
+
+main > section article:nth-of-type(1) > button {
+  background-color: inherit;
+  border: none;
+}
+
+main > section article:nth-of-type(1) i {
+  color: white;
+  font-size: 50px;
+}
+
+main > section article:nth-of-type(1) div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: white;
+  width: 17%;
+  height: 75%;
+  gap: 15px;
+}
+
+main > section article:nth-of-type(1) div img {
+  width: 80%;
+  height: 70%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+main > section article:nth-of-type(1) div > button {
+  background: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 60%;
+  height: 10%;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  transition: color 0.3s;
+}
+
+main > section article:nth-of-type(1) div > button:hover {
+  color: white;
+}
+
+main > section article:nth-of-type(1) div > button::before,
+main > section article:nth-of-type(1) div > button::after {
+  background: black;
+  content: "";
+  position: absolute;
+  z-index: -1;
+}
+
+main > section article:nth-of-type(1) div > button::after {
+  height: 100%;
+  left: -35%;
+  top: 0;
+  transform: skew(50deg);
+  transition-duration: 0.3s;
+  transform-origin: top left;
+  width: 0;
+}
+
+main > section article:nth-of-type(1) div > button:hover:after {
+  height: 100%;
+  width: 145%;
 }
 
 main > section article:nth-of-type(2) {
@@ -22,6 +95,45 @@ main > section article:nth-of-type(2) {
 
 main > section article:nth-of-type(2) span {
   font-size: 34px;
+}
+
+main > section article:nth-of-type(2) button {
+  background: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 90%;
+  height: 15%;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  transition: color 0.3s;
+}
+
+main > section article:nth-of-type(2) button:hover {
+  color: white;
+}
+
+main > section article:nth-of-type(2) button::before,
+main > section article:nth-of-type(2) button::after {
+  background: black;
+  content: "";
+  position: absolute;
+  z-index: -1;
+}
+
+main > section article:nth-of-type(2) button::after {
+  height: 100%;
+  left: -40%;
+  top: 0;
+  transform: skew(50deg);
+  transition-duration: 0.3s;
+  transform-origin: top left;
+  width: 0;
+}
+
+main > section article:nth-of-type(2) button:hover:after {
+  height: 100%;
+  width: 150%;
 }
 
 main > section article:nth-of-type(2) button {
