@@ -2,7 +2,7 @@ nav:nth-of-type(1) {
   margin: 35px 9px 0px;
 }
 
-nav:nth-of-type(1) article {
+nav:nth-of-type(1) article a {
   width: 70px;
   display: flex;
   gap: 5px;
@@ -10,6 +10,11 @@ nav:nth-of-type(1) article {
   padding: 16px 0px 12px;
   text-align: center;
   border-radius: 8px;
+  text-decoration: none;
+}
+
+nav:nth-of-type(1) article a:visited {
+  color: black;
 }
 
 nav article:hover:not(nav:nth-of-type(2) section article:nth-of-type(1)) {
@@ -50,11 +55,13 @@ nav:nth-of-type(2) section:nth-of-type(1) {
   background-color: white;
 }
 
-nav:nth-of-type(2) section:nth-of-type(1) article:not(:nth-of-type(1)) {
+nav:nth-of-type(2) section:nth-of-type(1) article:not(:nth-of-type(1)) a {
   display: flex;
   gap: 10px;
   padding: 5px;
   border-radius: 8px;
+  text-decoration: none;
+  color: black;
 }
 
 nav:nth-of-type(2) section:nth-of-type(1) article:nth-of-type(1) {
