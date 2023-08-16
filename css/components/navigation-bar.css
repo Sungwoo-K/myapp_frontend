@@ -1,9 +1,8 @@
-nav {
-  margin-left: 9px;
-  margin-top: 15px;
+nav:nth-of-type(1) {
+  margin: 35px 9px 0px;
 }
 
-nav article {
+nav:nth-of-type(1) article {
   width: 70px;
   display: flex;
   gap: 5px;
@@ -13,16 +12,75 @@ nav article {
   border-radius: 8px;
 }
 
-nav article:hover {
-  background-color: #f2f2f2;
+nav article:hover:not(nav:nth-of-type(2) section article:nth-of-type(1)) {
+  background-color: var(--hover-color);
   cursor: pointer;
 }
 
-nav article i {
+nav article:active:not(nav:nth-of-type(2) section article:nth-of-type(1)) {
+  background-color: var(--active-color);
+}
+
+nav:nth-of-type(1) i {
   font-size: 20px;
 }
 
-nav article span {
+nav:nth-of-type(1) span {
   font-weight: 600;
   font-size: 14px;
+}
+
+nav:nth-of-type(2) {
+  position: absolute;
+  display: flex;
+  top: 0;
+  width: 150%;
+  height: 100%;
+  z-index: -1;
+  transform: translateX(-34%);
+  transition: all 0.2s ease-in-out;
+}
+
+nav:nth-of-type(2) section:nth-of-type(1) {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 100%;
+  padding: 0px 10px 0px;
+  background-color: white;
+}
+
+nav:nth-of-type(2) section:nth-of-type(1) article:not(:nth-of-type(1)) {
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+nav:nth-of-type(2) section:nth-of-type(1) article:nth-of-type(1) {
+  height: 100px;
+}
+
+nav:nth-of-type(2) i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+}
+
+nav:nth-of-type(2) span {
+  display: flex;
+  font-size: 18px;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+}
+
+nav:nth-of-type(2) section:nth-of-type(2) {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.2s ease-in-out;
 }

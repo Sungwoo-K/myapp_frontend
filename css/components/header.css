@@ -16,30 +16,38 @@ header section:not(:nth-of-type(2)) article:hover {
   cursor: pointer;
 }
 
-header section:nth-of-type(1) {
-  display: flex;
+header > section:nth-of-type(1) label {
+  cursor: pointer;
 }
 
-header section:nth-of-type(1) article:nth-of-type(1) {
-  width: 25px;
-  height: 25px;
-  margin-left: 5px;
+header section:nth-of-type(1) {
   display: flex;
+  z-index: 99;
+}
+
+header section:nth-of-type(1) label {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  margin-left: 5px;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  text-align: center;
 }
 
-header section:nth-of-type(1) article:nth-of-type(1) > input {
+header section:nth-of-type(1) input {
   display: none;
 }
 
-header section:nth-of-type(1) article:nth-of-type(1):hover {
-  background-color: #e5e5e5;
+header section:nth-of-type(1) label:nth-of-type(1):hover {
+  background-color: var(--hover-color);
 }
 
-header section:nth-of-type(1) article:nth-of-type(2) {
+header section:nth-of-type(1) label:nth-of-type(1):active {
+  background-color: var(--active-color);
+}
+
+header section:nth-of-type(1) article {
   color: white;
   background-color: black;
   display: flex;
