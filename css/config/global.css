@@ -10,7 +10,7 @@ main {
 }
 
 header:has(input:checked) ~ main > nav:nth-of-type(2) {
-  z-index: 1;
+  z-index: 98;
   transform: translateX(0%);
   transition: transform 0.2s ease-in-out;
 }

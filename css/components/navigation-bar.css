@@ -9,12 +9,12 @@ nav:nth-of-type(1) article a {
   flex-direction: column;
   padding: 16px 0px 12px;
   text-align: center;
-  border-radius: 8px;
   text-decoration: none;
+  color: black;
 }
 
-nav:nth-of-type(1) article a:visited {
-  color: black;
+nav article {
+  border-radius: 8px;
 }
 
 nav article:hover:not(nav:nth-of-type(2) section article:nth-of-type(1)) {
@@ -55,7 +55,7 @@ nav:nth-of-type(2) section:nth-of-type(1) {
   background-color: white;
 }
 
-nav:nth-of-type(2) section:nth-of-type(1) article:not(:nth-of-type(1)) a {
+nav:nth-of-type(2) section:nth-of-type(1) article a {
   display: flex;
   gap: 10px;
   padding: 5px;

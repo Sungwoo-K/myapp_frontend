@@ -1,0 +1,114 @@
+/* Config */
+@import "./config/reset.css";
+@import "./config/variables.css";
+@import "./config/global.css";
+
+/* Components */
+@import "./components/header.css";
+@import "./components/navigation-bar.css";
+
+header section:nth-of-type(2) span {
+  display: flex;
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 35px;
+  height: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  word-break: keep-all;
+}
+
+main > form {
+  width: 93%;
+  height: 95%;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+main > form section {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 96%;
+  margin-right: 79px;
+}
+
+main > form section article:not(:last-of-type) {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 5%;
+}
+
+main > form section > span {
+  text-align: center;
+}
+
+main > form section article:nth-of-type(2) input {
+}
+
+main > form section article:not(:nth-of-type(2)) input {
+  font-size: 20px;
+}
+
+main > form section article:nth-of-type(3) select {
+  width: 47%;
+  font-size: 14px;
+}
+
+main > form section article:not(:nth-of-type(4)) input {
+  width: 98%;
+}
+
+main > form section article:nth-of-type(4) input {
+  width: 45%;
+}
+
+main > form section article:last-of-type {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 7%;
+}
+
+main > form section article:last-of-type button {
+  width: 30%;
+  background: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  transition: color 0.3s;
+}
+
+main > form section article:last-of-type button:hover {
+  color: white;
+}
+
+main > form section article:last-of-type button::before,
+main > form section article:last-of-type button::after {
+  background: black;
+  content: "";
+  position: absolute;
+  z-index: -1;
+}
+
+main > form section article:last-of-type button::after {
+  height: 100%;
+  left: -60%;
+  top: 0;
+  transform: skew(50deg);
+  transition-duration: 0.3s;
+  transform-origin: top left;
+  width: 0;
+}
+
+main > form section article:last-of-type button:hover:after {
+  height: 100%;
+  width: 165%;
+}

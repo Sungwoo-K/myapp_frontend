@@ -111,33 +111,39 @@ main > section article:nth-of-type(2) span {
   font-size: 34px;
 }
 
-main > section article:nth-of-type(2) button {
+main > section article:nth-of-type(2) a {
+  width: 13%;
+  height: 15%;
+}
+
+main > section article:nth-of-type(2) a button {
   background: none;
   border: 1px solid black;
   border-radius: 5px;
-  width: 90%;
-  height: 15%;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
   z-index: 2;
   transition: color 0.3s;
+  word-break: keep-all;
 }
 
-main > section article:nth-of-type(2) button:hover {
+main > section article:nth-of-type(2) a button:hover {
   color: white;
 }
 
-main > section article:nth-of-type(2) button::before,
-main > section article:nth-of-type(2) button::after {
+main > section article:nth-of-type(2) a button::before,
+main > section article:nth-of-type(2) a button::after {
   background: black;
   content: "";
   position: absolute;
   z-index: -1;
 }
 
-main > section article:nth-of-type(2) button::after {
+main > section article:nth-of-type(2) a button::after {
   height: 100%;
-  left: -40%;
+  left: -55%;
   top: 0;
   transform: skew(50deg);
   transition-duration: 0.3s;
@@ -145,11 +151,7 @@ main > section article:nth-of-type(2) button::after {
   width: 0;
 }
 
-main > section article:nth-of-type(2) button:hover:after {
+main > section article:nth-of-type(2) a button:hover:after {
   height: 100%;
-  width: 150%;
-}
-
-main > section article:nth-of-type(2) button {
-  width: 150px;
+  width: 170%;
 }

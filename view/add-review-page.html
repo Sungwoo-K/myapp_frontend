@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/add-review-page.css" />
+    <link rel="shortcut icon" href="/martini-glass-solid.png" />
+    <script
+      src="https://kit.fontawesome.com/244f461546.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>CheersCraft</title>
+  </head>
+  <body>
+    <header>
+      <section>
+        <label for="checkbox">
+          <i class="fa-solid fa-bars"></i>
+        </label>
+        <input type="checkbox" id="checkbox" />
+        <a href="../index.html">
+          <i class="fa-solid fa-martini-glass"></i>
+          <span>CheersCraft</span>
+        </a>
+      </section>
+      <section>
+        <span>추가하기</span>
+      </section>
+      <section>
+        <article><i class="fa-solid fa-circle-user"></i></article>
+      </section>
+    </header>
+    <main>
+      <nav>
+        <article>
+          <a href="../index.html">
+            <i class="fa-solid fa-bottle-droplet"></i>
+            <span>Spirit</span>
+          </a>
+        </article>
+        <article>
+          <a href="../view/recipe-page.html">
+            <i class="fa-solid fa-martini-glass-citrus"></i>
+            <span>Cocktail</span>
+          </a>
+        </article>
+      </nav>
+      <nav>
+        <section>
+          <article></article>
+          <article>
+            <a href="../index.html">
+              <i class="fa-solid fa-bottle-droplet"></i>
+              <span>Spirit</span>
+            </a>
+          </article>
+          <article>
+            <a href="../view/recipe-page.html">
+              <i class="fa-solid fa-martini-glass-citrus"></i>
+              <span>Cocktail</span>
+            </a>
+          </article>
+        </section>
+        <section></section>
+      </nav>
+      <form action="">
+        <section>
+          <article>
+            <input type="text" placeholder="Name" />
+          </article>
+          <article>
+            <input type="file" accept="image/jpeg, image/png" />
+          </article>
+          <article>
+            <select name="spirit">
+              <option value="whisky">위스키</option>
+              <option value="brandy">브랜디</option>
+              <option value="vodka">보드카</option>
+              <option value="tequilla">데킬라</option>
+              <option value="liqueur">리큐르</option>
+              <option value="rum">럼</option>
+              <option value="gin">진</option>
+            </select>
+            <select name="type"></select>
+          </article>
+          <article>
+            <input type="number" placeholder="Score" max="5" min="0" />
+            <input type="number" placeholder="Vol" max="100" min="1" />
+          </article>
+          <span>Tasting Notes</span>
+          <article>
+            <input type="text" placeholder="Aroma" />
+          </article>
+          <article>
+            <input type="text" placeholder="Taste" />
+          </article>
+          <article>
+            <input type="text" placeholder="Finish" />
+          </article>
+          <article>
+            <button>Create</button>
+          </article>
+        </section>
+      </form>
+    </main>
+  </body>
+</html>
