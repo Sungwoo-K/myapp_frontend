@@ -67,12 +67,15 @@
         <section>
           <article>
             <input type="text" placeholder="Name" />
+            <div></div>
           </article>
           <article>
             <input type="file" accept="image/jpeg, image/png" />
+            <div></div>
           </article>
           <article>
             <select name="spirit">
+              <option value="">--Please choose an option--</option>
               <option value="whisky">위스키</option>
               <option value="brandy">브랜디</option>
               <option value="vodka">보드카</option>
@@ -81,21 +84,32 @@
               <option value="rum">럼</option>
               <option value="gin">진</option>
             </select>
-            <select name="type"></select>
+            <select name="type">
+              <option value="">--Please choose an option--</option>
+            </select>
           </article>
           <article>
-            <input type="number" placeholder="Score" max="5" min="0" />
-            <input type="number" placeholder="Vol" max="100" min="1" />
+            <section>
+              <input type="number" placeholder="Score" max="5" min="0" />
+              <div></div>
+            </section>
+            <section>
+              <input type="number" placeholder="Vol" max="100" min="1" />
+              <div></div>
+            </section>
           </article>
           <span>Tasting Notes</span>
           <article>
             <input type="text" placeholder="Aroma" />
+            <div></div>
           </article>
           <article>
             <input type="text" placeholder="Taste" />
+            <div></div>
           </article>
           <article>
             <input type="text" placeholder="Finish" />
+            <div></div>
           </article>
           <article>
             <button>Create</button>

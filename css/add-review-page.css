@@ -28,7 +28,7 @@ main > form {
   justify-content: center;
 }
 
-main > form section {
+main > form > section {
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -37,35 +37,86 @@ main > form section {
   margin-right: 79px;
 }
 
+main > form section > span {
+  text-align: center;
+  font-size: 25px;
+}
+
 main > form section article:not(:last-of-type) {
   display: flex;
   justify-content: space-between;
+  position: relative;
   width: 100%;
   height: 5%;
 }
 
-main > form section > span {
-  text-align: center;
-}
-
-main > form section article:nth-of-type(2) input {
-}
-
-main > form section article:not(:nth-of-type(2)) input {
+main > form section > article:not(:nth-of-type(2)) input {
   font-size: 20px;
+}
+
+main > form section article input:focus {
+  outline: none;
+}
+
+main > form section article:nth-of-type(4) section {
+  position: relative;
+  width: 47%;
+}
+
+main > form section article:not(:nth-of-type(4)) input {
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  width: 98%;
+}
+
+main > form section article:nth-of-type(4) section input {
+  width: 96%;
+  height: 86%;
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+main > form section article:not(:nth-of-type(2)) div {
+  background-color: black;
+  width: 0%;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: width 0.15s ease-in-out;
+}
+
+main > form section article:not(:nth-of-type(2)) input:focus ~ div {
+  width: 100%;
+}
+
+main
+  > form
+  section
+  article:not(:nth-of-type(2))
+  input:not(:placeholder-shown)
+  ~ div {
+  width: 100%;
+}
+
+main > form section article:not(:nth-of-type(2)) input:invalid ~ div {
+  background-color: red;
 }
 
 main > form section article:nth-of-type(3) select {
   width: 47%;
   font-size: 14px;
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
 }
 
-main > form section article:not(:nth-of-type(4)) input {
-  width: 98%;
+main > form section article:nth-of-type(3) select:focus {
+  outline: none;
 }
 
-main > form section article:nth-of-type(4) input {
-  width: 45%;
+main > form section article:nth-of-type(4) input::-webkit-outer-spin-button,
+main > form section article:nth-of-type(4) input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 main > form section article:last-of-type {
@@ -90,7 +141,6 @@ main > form section article:last-of-type button:hover {
   color: white;
 }
 
-main > form section article:last-of-type button::before,
 main > form section article:last-of-type button::after {
   background: black;
   content: "";

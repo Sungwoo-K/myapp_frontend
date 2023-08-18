@@ -81,7 +81,6 @@ main > section article section div > button:hover {
   color: white;
 }
 
-main > section article section div > button::before,
 main > section article section div > button::after {
   background: black;
   content: "";

@@ -7,6 +7,7 @@ body {
 main {
   display: flex;
   height: 93%;
+  width: 99%;
 }
 
 header:has(input:checked) ~ main > nav:nth-of-type(2) {
