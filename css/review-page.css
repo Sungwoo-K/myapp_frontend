@@ -153,3 +153,197 @@ main > section article:nth-of-type(2) a button:hover:after {
   height: 100%;
   width: 170%;
 }
+
+body > div {
+  width: 99.5%;
+  height: 99%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  backdrop-filter: blur(1.5px);
+}
+
+body > div > section {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  width: 50%;
+  height: 75%;
+  border: none;
+  box-shadow: 0px 2px 10px 2px black;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+body > div > section > article:nth-of-type(1) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 40%;
+  height: 100%;
+}
+
+body > div > section > article:nth-of-type(1) img {
+  width: 80%;
+  height: 70%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+body > div > section > article:nth-of-type(1) button {
+  background: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 40%;
+  height: 5%;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  transition: color 0.3s;
+}
+
+body > div > section > article:nth-of-type(1) button:hover {
+  color: white;
+}
+
+body > div > section > article:nth-of-type(1) button::after {
+  background: black;
+  content: "";
+  position: absolute;
+  z-index: -1;
+}
+
+body > div > section > article:nth-of-type(1) button::after {
+  height: 100%;
+  left: -35%;
+  top: 0;
+  transform: skew(50deg);
+  transition-duration: 0.3s;
+  transform-origin: top left;
+  width: 0;
+}
+
+body > div > section > article:nth-of-type(1) button:hover:after {
+  height: 100%;
+  width: 145%;
+}
+
+body > div > section > article:nth-of-type(2) {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+body > div > section > article:nth-of-type(2) > section {
+  width: 100%;
+}
+
+body > div > section > article:nth-of-type(2) > section:nth-of-type(1) {
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 10%;
+}
+
+body > div > section > article:nth-of-type(2) > section:nth-of-type(2) {
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+body
+  > div
+  > section
+  > article:nth-of-type(2)
+  > section:nth-of-type(2)
+  div:nth-of-type(1) {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+body > div > section > article:nth-of-type(2) > section:nth-of-type(3) {
+  display: flex;
+  height: 15%;
+}
+
+body > div > section > article:nth-of-type(2) > section:nth-of-type(3) article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 50%;
+}
+
+body
+  > div
+  > section
+  > article:nth-of-type(2)
+  > section:nth-of-type(3)
+  article
+  div:first-of-type {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+body > div > section > article:nth-of-type(2) > section:nth-of-type(4) {
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 10%;
+}
+
+body > div > section > article:nth-of-type(2) > section:nth-of-type(5) {
+  height: 23%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+body > div > section > article:nth-of-type(2) > section:nth-of-type(5) div {
+  width: 90%;
+}
+
+body
+  > div
+  > section
+  > article:nth-of-type(2)
+  > section:nth-of-type(5)
+  div
+  span:first-of-type {
+  display: inline-block;
+  width: 11%;
+  font-weight: 600;
+}
+
+body > div > section > article:nth-of-type(2) > button {
+  position: absolute;
+  right: 5%;
+  top: 3%;
+  font-size: 30px;
+  background-color: inherit;
+  border: none;
+}
+
+body > div > section > article:nth-of-type(2) > button:hover {
+  cursor: pointer;
+}

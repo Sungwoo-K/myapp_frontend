@@ -19,6 +19,7 @@ main > section {
   height: 98%;
   background-color: black;
   border-radius: 10px;
+  position: relative;
 }
 
 main > section > button {
@@ -101,4 +102,20 @@ main > section article section div > button::after {
 main > section article section div > button:hover:after {
   height: 100%;
   width: 145%;
+}
+
+main > section > a {
+  background-color: white;
+  color: black;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 35px;
+  border-radius: 50%;
+  position: absolute;
+  right: 3%;
+  top: 5%;
 }
