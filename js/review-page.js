@@ -11,7 +11,7 @@
 			<section data-no="0">
 				<article>
 					<img src="./test.jpg" />
-					<button>수정하기</button>
+					<button><a href="./view/edit-review-page.html">수정하기</a></button>
 					<button>삭제하기</button>
 				</article>
 				<article>
@@ -56,9 +56,11 @@
       setTimeout(() => {
         document.querySelector("body > div > section").style.opacity = "1";
       }, 100);
+
       const removeBtn = document.querySelector(
         "body > div > section > article:nth-of-type(2) > button"
       );
+
       removeBtn.addEventListener("click", () => {
         removeBtn.closest("div").remove();
       });

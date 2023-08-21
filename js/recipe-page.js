@@ -9,7 +9,7 @@
 			<section data-no="0">
         <article>
           <img src="../test.jpg" />
-          <button>수정하기</button>
+          <button><a href="./edit-recipe-page.html">수정하기</a></button>
           <button>삭제하기</button>
         </article>
         <article>

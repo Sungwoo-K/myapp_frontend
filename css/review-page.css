@@ -206,6 +206,7 @@ body > div > section > article:nth-of-type(1) button {
   overflow: hidden;
   z-index: 2;
   transition: color 0.3s;
+  padding: 0;
 }
 
 body > div > section > article:nth-of-type(1) button:hover {
@@ -230,8 +231,23 @@ body > div > section > article:nth-of-type(1) button::after {
 }
 
 body > div > section > article:nth-of-type(1) button:hover:after {
-  height: 100%;
+  height: 105%;
   width: 145%;
+}
+
+body > div > section > article:nth-of-type(1) button a:hover {
+  color: white;
+}
+
+body > div > section > article:nth-of-type(1) button a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transition: color 0.3s ease-in-out;
 }
 
 body > div > section > article:nth-of-type(2) {
