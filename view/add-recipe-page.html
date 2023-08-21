@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/add-review-page.css" />
+    <link rel="stylesheet" href="../css/add-recipe-page.css" />
     <link rel="shortcut icon" href="/martini-glass-solid.png" />
     <script
       src="https://kit.fontawesome.com/244f461546.js"
@@ -84,38 +84,32 @@
               <option value="rum">럼</option>
               <option value="gin">진</option>
             </select>
-            <select name="type">
-              <option value="">--Please choose an option--</option>
-            </select>
           </article>
+          <article>
+            <input type="number" placeholder="Vol" max="100" min="1" />
+            <div></div>
+          </article>
+          <article>
+            <input type="text" placeholder="lngredients" />
+            <div></div>
+          </article>
+        </section>
+        <section>
+          <span>How to make</span>
           <article>
             <section>
-              <input type="number" placeholder="Score" max="5" min="0" />
+              <input type="text" placeholder="First-step" />
               <div></div>
             </section>
-            <section>
-              <input type="number" placeholder="Vol" max="100" min="1" />
-              <div></div>
-            </section>
-          </article>
-          <span>Tasting Notes</span>
-          <article>
-            <input type="text" placeholder="Aroma" />
-            <div></div>
-          </article>
-          <article>
-            <input type="text" placeholder="Taste" />
-            <div></div>
-          </article>
-          <article>
-            <input type="text" placeholder="Finish" />
-            <div></div>
           </article>
           <article>
             <button>Create</button>
           </article>
+          <button><i class="fa-solid fa-plus"></i></button>
+          <button><i class="fa-solid fa-minus"></i></button>
         </section>
       </form>
     </main>
+    <script src="../js/add-recipe-page.js"></script>
   </body>
 </html>
