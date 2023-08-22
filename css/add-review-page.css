@@ -155,7 +155,7 @@ main > form section article:last-of-type button::after {
 
 main > form section article:last-of-type button::after {
   height: 100%;
-  left: -60%;
+  left: -80%;
   top: 0;
   transform: skew(50deg);
   transition-duration: 0.3s;
@@ -165,5 +165,5 @@ main > form section article:last-of-type button::after {
 
 main > form section article:last-of-type button:hover:after {
   height: 100%;
-  width: 165%;
+  width: 180%;
 }

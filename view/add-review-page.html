@@ -66,7 +66,7 @@
       <form action="">
         <section>
           <article>
-            <input type="text" placeholder="Name" />
+            <input type="text" placeholder="Name" maxlength="30" />
             <div></div>
           </article>
           <article>
@@ -76,7 +76,8 @@
           <article>
             <select name="spirit">
               <option value="">--Please choose a spirit--</option>
-              <option value="whisky">위스키</option>
+              <option value="scotchWhisky">스카치 위스키</option>
+              <option value="americanWhiskey">아메리칸 위스키</option>
               <option value="brandy">브랜디</option>
               <option value="vodka">보드카</option>
               <option value="tequilla">데킬라</option>
@@ -85,12 +86,12 @@
               <option value="gin">진</option>
             </select>
             <select name="type">
-              <option value="">--Please choose an option--</option>
+              <option value="">--Please select a spirit first--</option>
             </select>
           </article>
           <article>
             <section>
-              <input type="number" placeholder="Score" max="5" min="0" />
+              <input type="number" placeholder="Score" max="5" min="1" />
               <div></div>
             </section>
             <section>
@@ -100,15 +101,15 @@
           </article>
           <span>Tasting Notes</span>
           <article>
-            <input type="text" placeholder="Aroma" />
+            <input type="text" placeholder="Aroma" maxlength="33" />
             <div></div>
           </article>
           <article>
-            <input type="text" placeholder="Taste" />
+            <input type="text" placeholder="Taste" maxlength="33" />
             <div></div>
           </article>
           <article>
-            <input type="text" placeholder="Finish" />
+            <input type="text" placeholder="Finish" maxlength="33" />
             <div></div>
           </article>
           <article>
@@ -117,5 +118,7 @@
         </section>
       </form>
     </main>
+    <script src="../js/select-options.js"></script>
+    <script src="../js/add-review-page.js"></script>
   </body>
 </html>

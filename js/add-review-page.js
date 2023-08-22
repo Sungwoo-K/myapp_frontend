@@ -1,0 +1,80 @@
+// input 값 검증
+(() => {
+  const form = document.querySelector("form");
+  const button = form.querySelector("button");
+  const name = form.querySelector("input");
+  const img = form.querySelector("article:nth-of-type(2) input");
+  const selectSpirit = document.querySelector("select:first-of-type");
+  const selectOption = document.querySelector("select:last-of-type");
+  const score = form.querySelector(
+    "article:nth-of-type(4) section:nth-of-type(1) input"
+  );
+  const vol = form.querySelector(
+    "article:nth-of-type(4) section:nth-of-type(2) input"
+  );
+  const aroma = form.querySelector("article:nth-of-type(5) input");
+  const taste = form.querySelector("article:nth-of-type(6) input");
+  const finish = form.querySelector("article:nth-of-type(7) input");
+
+  button.addEventListener("click", (e) => {
+    const selectSpiritValue =
+      selectSpirit.options[selectSpirit.selectedIndex].value;
+    const selectOptionValue =
+      selectOption.options[selectOption.selectedIndex].value;
+    e.preventDefault();
+    if (name.value === "") {
+      alert("이름을 입력해주세요.");
+      name.focus();
+      return;
+    }
+
+    if (img.value === "") {
+      alert("사진을 선택해주세요.");
+      return;
+    }
+    if (selectSpiritValue === "") {
+      alert("종류를 선택해주세요.");
+      return;
+    }
+
+    if (selectOptionValue === "none") {
+      alert("옵션을 선택해주세요.");
+      return;
+    }
+
+    if (score.value === "") {
+      alert("점수를 입력해주세요.");
+      score.focus();
+      return;
+    }
+    if (vol.value === "") {
+      alert("도수를 입력해주세요.");
+      vol.focus();
+      return;
+    }
+    if (aroma.value === "") {
+      alert("Aroma를 입력해주세요.");
+      aroma.focus();
+      return;
+    }
+    if (taste.value === "") {
+      alert("taste를 입력해주세요.");
+      taste.focus();
+      return;
+    }
+    if (finish.value === "") {
+      alert("Finish를 입력해주세요.");
+      finish.focus();
+      return;
+    }
+
+    if (!score.validity.valid || !vol.validity.valid) {
+      alert("숫자를 다시 입력해주세요.");
+      return;
+    }
+
+    return form.submit();
+
+    //검증이 완료 되었으므로 이 값들을 백엔드 서버쪽으로 fetch를 통해 post로 데이터 입력
+  });
+})();

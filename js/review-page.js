@@ -11,7 +11,7 @@
 			<section data-no="0">
 				<article>
 					<img src="./test.jpg" />
-					<button><a href="./view/edit-review-page.html">수정하기</a></button>
+					<button><a href="./view/edit-review-page.html?no=4">수정하기</a></button>
 					<button>삭제하기</button>
 				</article>
 				<article>
