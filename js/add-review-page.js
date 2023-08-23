@@ -16,12 +16,28 @@
   const taste = form.querySelector("article:nth-of-type(6) input");
   const finish = form.querySelector("article:nth-of-type(7) input");
 
-  button.addEventListener("click", (e) => {
+  async function modifyFile(image) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.addEventListener("load", (e) => {
+        resolve(e.target.result);
+      });
+
+      reader.addEventListener("error", (e) => {
+        reject("이미지파일 인코딩 에러가 발생하였습니다.");
+      });
+
+      reader.readAsDataURL(image);
+    });
+  }
+
+  button.addEventListener("click", async (e) => {
+    e.preventDefault();
     const selectSpiritValue =
       selectSpirit.options[selectSpirit.selectedIndex].value;
     const selectOptionValue =
       selectOption.options[selectOption.selectedIndex].value;
-    e.preventDefault();
     if (name.value === "") {
       alert("이름을 입력해주세요.");
       name.focus();
@@ -73,8 +89,44 @@
       return;
     }
 
-    return form.submit();
+    const modifyImg = await modifyFile(img.files[0]);
 
-    //검증이 완료 되었으므로 이 값들을 백엔드 서버쪽으로 fetch를 통해 post로 데이터 입력
+    let combineSpiritAndOption = "";
+
+    if (selectOption.options[selectOption.selectedIndex].value === "notUse") {
+      combineSpiritAndOption = `${
+        selectSpirit.options[selectSpirit.selectedIndex].text
+      }`;
+    } else {
+      combineSpiritAndOption = `${
+        selectOption.options[selectOption.selectedIndex].text
+      } ${selectSpirit.options[selectSpirit.selectedIndex].text}`;
+    }
+
+    // 검증이 완료 되었으므로 이 값들을 백엔드 서버쪽으로 fetch를 통해 post로 데이터 입력
+    const response = await fetch("http://127.0.0.1:8080/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name.value,
+        img: modifyImg,
+        spirit: combineSpiritAndOption,
+        score: score.value,
+        vol: vol.value,
+        aroma: aroma.value,
+        taste: taste.value,
+        finish: finish.value,
+      }),
+    });
+
+    const result = await response.json();
+
+    const { message } = result;
+
+    alert(message);
+
+    return (window.location.href = "http://127.0.0.1:5500");
   });
 })();

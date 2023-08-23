@@ -19,7 +19,7 @@
       selectSpiritValue === "gin"
     ) {
       selectOption.innerHTML = /*html*/ `
-    <option>--------------------------------------</option>`;
+    <option value="notUse">--------------------------------------</option>`;
       return;
     }
 
