@@ -1,5 +1,13 @@
-let page = 0;
-let page_size = 4;
+let currentPage = 0;
+let pageSize = 4;
+let isFirstPage;
+let isLastPage;
+const leftBtn = document.querySelector(
+  "main > section > article:nth-of-type(1) > section:nth-of-type(1) > button"
+);
+const rightBtn = document.querySelector(
+  "main > section > article:nth-of-type(1) > section:nth-of-type(3) > button"
+);
 
 function createAlcObject(no, img) {
   const div = document.createElement("div");
@@ -13,31 +21,70 @@ function createAlcObject(no, img) {
   return div;
 }
 
+// Paging 시 버튼 유무상태
+function activePagingBtn(firstPage, lastPage) {
+  if (firstPage) {
+    leftBtn.style.display = "none";
+  } else {
+    leftBtn.style.display = "inline-block";
+  }
+
+  if (lastPage) {
+    rightBtn.style.display = "none";
+  } else {
+    rightBtn.style.display = "inline-block";
+  }
+}
+
+// page에 따라 list를 갖고오는 기능
 async function getPageList(page) {
+  console.log(page);
   const response = await fetch(
-    `http://127.0.0.1:8080/reviews/paging?page=${page}&size=${page_size}`
+    `http://127.0.0.1:8080/reviews/paging?page=${page}&size=${pageSize}`
   );
   const result = await response.json();
 
+  console.log(result);
   const listSection = document.querySelector(
-    "main > section > article:nth-of-type(1) > section"
+    "main > section > article:nth-of-type(1) > section:nth-of-type(2)"
   );
   listSection.innerHTML = "";
 
   for (let item of result.content) {
     listSection.append(createAlcObject(item.no, item.img));
   }
+
+  isFirstPage = result.first ? result.first : false;
+  isLastPage = result.last ? result.last : false;
+  activePagingBtn(isFirstPage, isLastPage);
 }
 
+//버튼을 누를 때마다 page 넘기기
+(() => {
+  rightBtn.addEventListener("click", () => {
+    const updatePage = currentPage + 1;
+    getPageList(updatePage);
+    currentPage = updatePage;
+  });
+
+  leftBtn.addEventListener("click", () => {
+    const updatePage = currentPage - 1;
+    getPageList(currentPage - 1);
+    currentPage = updatePage;
+  });
+})();
+
+// 첫 창 list 불러오기
 (() => {
   window.addEventListener("DOMContentLoaded", () => {
     getPageList(0);
   });
 })();
-// 모달 창
+
+// Detail 모달 창
 (() => {
   const list = document.querySelector(
-    "main > section > article:nth-of-type(1) > section"
+    "main > section > article:nth-of-type(1) > section:nth-of-type(2)"
   );
   list.addEventListener("click", async (e) => {
     if (e.target.tagName === "BUTTON") {

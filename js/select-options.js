@@ -23,7 +23,10 @@
       return;
     }
 
-    if (selectSpiritValue === "scotchWhisky") {
+    if (
+      selectSpiritValue === "scotchWhisky" ||
+      selectSpiritValue === "whisky"
+    ) {
       selectOption.innerHTML = /*html*/ `
     <option value="none">--Please choose an option--</option>
     <option>블렌디드</option>

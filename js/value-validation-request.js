@@ -1,36 +1,3 @@
-(() => {
-  window.addEventListener("DOMContentLoaded", async () => {
-    const nameInput = document.querySelector(
-      "form > section > article:nth-of-type(1) > input"
-    );
-    const scoreInput = document.querySelector(
-      "form > section > article:nth-of-type(4) > section:nth-of-type(1) > input"
-    );
-    const volInput = document.querySelector(
-      "form > section > article:nth-of-type(4) > section:nth-of-type(2) > input"
-    );
-    const aromaInput = document.querySelector(
-      "form > section > article:nth-of-type(5) > input"
-    );
-    const tasteInput = document.querySelector(
-      "form > section > article:nth-of-type(6) > input"
-    );
-    const finishInput = document.querySelector(
-      "form > section > article:nth-of-type(7) > input"
-    );
-
-    const query = window.location.search;
-    const response = await fetch(`http://127.0.0.1:8080/reviews${query}`);
-    const result = await response.json();
-    nameInput.value = result.name;
-    scoreInput.value = result.score;
-    volInput.value = result.vol;
-    aromaInput.value = result.aroma;
-    tasteInput.value = result.taste;
-    finishInput.value = result.finish;
-  });
-})();
-
 // input 값 검증
 (() => {
   const form = document.querySelector("form");
@@ -49,6 +16,7 @@
   const taste = form.querySelector("article:nth-of-type(6) input");
   const finish = form.querySelector("article:nth-of-type(7) input");
 
+  //imagefile base64로 인코딩
   async function modifyFile(image) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -62,6 +30,33 @@
       });
 
       reader.readAsDataURL(image);
+    });
+  }
+
+  //query에 따라서 fetch요청을 달리하는 기능
+  async function requestFetch(query, image, spirit) {
+    return new Promise(async (resolve) => {
+      const requestMethod = query ? "PUT" : "POST";
+      const response = await fetch(`http://127.0.0.1:8080/reviews${query}`, {
+        method: `${requestMethod}`,
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name.value,
+          img: image,
+          spirit: spirit,
+          score: score.value,
+          vol: vol.value,
+          aroma: aroma.value,
+          taste: taste.value,
+          finish: finish.value,
+        }),
+      });
+
+      const result = await response.json();
+
+      resolve(result.message);
     });
   }
 
@@ -135,29 +130,15 @@
         selectOption.options[selectOption.selectedIndex].text
       } ${selectSpirit.options[selectSpirit.selectedIndex].text}`;
     }
-    console.log(window.location.search);
+
     // 검증이 완료 되었으므로 이 값들을 백엔드 서버쪽으로 fetch를 통해 post로 데이터 입력
-    const query = window.location.search;
-    const response = await fetch(`http://127.0.0.1:8080/reviews${query}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name.value,
-        img: modifyImg,
-        spirit: combineSpiritAndOption,
-        score: score.value,
-        vol: vol.value,
-        aroma: aroma.value,
-        taste: taste.value,
-        finish: finish.value,
-      }),
-    });
+    const urlQuery = window.location.search;
 
-    const result = await response.json();
-
-    const { message } = result;
+    const message = await requestFetch(
+      urlQuery,
+      modifyImg,
+      combineSpiritAndOption
+    );
 
     alert(message);
 
