@@ -26,6 +26,7 @@ main > form {
   padding-top: 20px;
   display: flex;
   justify-content: center;
+  font-family: "GmarketSansMedium";
 }
 
 main > form > section {
@@ -40,6 +41,8 @@ main > form > section {
 main > form section > span {
   text-align: center;
   font-size: 25px;
+  word-spacing: 30px;
+  letter-spacing: 2px;
 }
 
 main > form section article:not(:last-of-type) {
@@ -140,6 +143,8 @@ main > form section article:last-of-type button {
   overflow: hidden;
   z-index: 2;
   transition: color 0.3s;
+  font-size: 18px;
+  font-family: "GmarketSansMedium";
 }
 
 main > form section article:last-of-type button:hover {

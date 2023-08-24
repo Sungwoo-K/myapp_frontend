@@ -22,19 +22,27 @@ main > section {
   position: relative;
 }
 
-main > section > button {
+main > section > article > button {
   background-color: inherit;
   border: none;
   color: white;
   font-size: 50px;
 }
 
-main > section article {
+main > section article:not(:nth-of-type(2)) {
+  height: 99%;
+  width: 4%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+main > section article:nth-of-type(2) {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 94%;
+  width: 92%;
   height: 98%;
   gap: 5px;
 }
@@ -76,6 +84,9 @@ main > section article section div > button {
   overflow: hidden;
   z-index: 2;
   transition: color 0.3s;
+  font-size: 15px;
+  letter-spacing: 2px;
+  font-family: "GmarketSansMedium";
 }
 
 main > section article section div > button:hover {
@@ -140,7 +151,7 @@ body > div > section {
   width: 60%;
   height: 80%;
   border: none;
-  box-shadow: 0px 2px 10px 2px black;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -172,6 +183,7 @@ body > div > section > article:nth-of-type(1) button {
   overflow: hidden;
   z-index: 2;
   transition: color 0.3s;
+  font-family: "GmarketSansMedium";
   padding: 0;
 }
 
@@ -223,6 +235,7 @@ body > div > section > article:nth-of-type(2) {
   flex-direction: column;
   align-items: center;
   position: relative;
+  font-family: "GmarketSansMedium";
 }
 
 body > div > section > article:nth-of-type(2) > section {
@@ -237,6 +250,8 @@ body > div > section > article:nth-of-type(2) > section:nth-of-type(1) {
   font-size: 30px;
   font-weight: 600;
   margin-top: 10%;
+  letter-spacing: 3px;
+  word-spacing: 7px;
 }
 
 body > div > section > article:nth-of-type(2) > section:nth-of-type(2) {
@@ -278,6 +293,8 @@ body > div > section > article:nth-of-type(2) > section:nth-of-type(4) {
   justify-content: center;
   font-size: 30px;
   font-weight: 600;
+  word-spacing: 15px;
+  letter-spacing: 2px;
 }
 
 body > div > section > article:nth-of-type(2) > section:nth-of-type(5) {

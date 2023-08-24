@@ -5,6 +5,7 @@ header {
   margin-right: 20px;
   display: flex;
   justify-content: space-between;
+  font-family: "GmarketSansMedium";
 }
 
 header form {
@@ -47,20 +48,21 @@ header section:nth-of-type(1) label:nth-of-type(1):hover {
   background-color: var(--hover-color);
 }
 
-header section:nth-of-type(1) label:nth-of-type(1):active {
-  background-color: var(--active-color);
-}
-
 header section:nth-of-type(1) a {
   color: white;
   background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
+  width: 185px;
   border-radius: 8px;
   margin-left: 30px;
   text-decoration: none;
+  text-align: end;
+}
+
+header section:nth-of-type(1) a span:nth-of-type(1) {
+  width: 21px;
 }
 
 header section:nth-of-type(2) {

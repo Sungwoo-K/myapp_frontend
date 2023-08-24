@@ -19,7 +19,7 @@
         </label>
         <input type="checkbox" id="checkbox" />
         <a href="../index.html">
-          <i class="fa-solid fa-martini-glass"></i>
+          <span><i class="fa-solid fa-martini-glass"></i></span>
           <span>CheersCraft</span>
         </a>
       </section>
@@ -34,13 +34,13 @@
       <nav>
         <article>
           <a href="../index.html">
-            <i class="fa-solid fa-bottle-droplet"></i>
+            <span><i class="fa-solid fa-bottle-droplet"></i></span>
             <span>Spirit</span>
           </a>
         </article>
         <article>
           <a href="../view/recipe-page.html">
-            <i class="fa-solid fa-martini-glass-citrus"></i>
+            <span><i class="fa-solid fa-martini-glass-citrus"></i></span>
             <span>Cocktail</span>
           </a>
         </article>
@@ -77,6 +77,8 @@
             <select name="spirit">
               <option value="">--Please choose a spirit--</option>
               <option value="whisky">위스키</option>
+              <option value="scotchWhisky">스카치 위스키</option>
+              <option value="americanWhiskey">아메리칸 위스키</option>
               <option value="brandy">브랜디</option>
               <option value="vodka">보드카</option>
               <option value="tequilla">데킬라</option>
@@ -85,7 +87,7 @@
               <option value="gin">진</option>
             </select>
             <select name="type">
-              <option value="">--Please choose an option--</option>
+              <option value="">--Please select a spirit first--</option>
             </select>
           </article>
           <article>
@@ -118,6 +120,7 @@
       </form>
     </main>
     <script src="../js/select-options.js"></script>
-    <script src="../js/edit-review-page.js"></script>
+    <script src="../js/add-review-page.js"></script>
+    <script src="../js/value-validation-request.js"></script>
   </body>
 </html>

@@ -1,5 +1,6 @@
 nav:nth-of-type(1) {
   margin: 35px 9px 0px;
+  font-family: "GmarketSansMedium";
 }
 
 nav:nth-of-type(1) article a {
@@ -30,7 +31,11 @@ nav:nth-of-type(1) i {
   font-size: 20px;
 }
 
-nav:nth-of-type(1) span {
+nav:nth-of-type(1) span:first-of-type {
+  height: 22px;
+}
+
+nav:nth-of-type(1) span:last-of-type {
   font-weight: 600;
   font-size: 14px;
 }
@@ -44,6 +49,7 @@ nav:nth-of-type(2) {
   z-index: -1;
   transform: translateX(-34%);
   transition: all 0.2s ease-in-out;
+  font-family: "GmarketSansMedium";
 }
 
 nav:nth-of-type(2) section:nth-of-type(1) {
