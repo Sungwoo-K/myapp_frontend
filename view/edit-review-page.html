@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/add-review-page.css" />
-    <link rel="shortcut icon" href="/martini-glass-solid.png" />
+    <link rel="shortcut icon" href="../martini-glass-solid.png" />
     <script
       src="https://kit.fontawesome.com/244f461546.js"
       crossorigin="anonymous"
@@ -63,10 +63,10 @@
         </section>
         <section></section>
       </nav>
-      <form action="">
+      <form>
         <section>
           <article>
-            <input type="text" placeholder="Name" />
+            <input type="text" placeholder="Name" maxlength="30" />
             <div></div>
           </article>
           <article>
@@ -102,15 +102,15 @@
           </article>
           <span>Tasting Notes</span>
           <article>
-            <input type="text" placeholder="Aroma" />
+            <input type="text" placeholder="Aroma" maxlength="33" />
             <div></div>
           </article>
           <article>
-            <input type="text" placeholder="Taste" />
+            <input type="text" placeholder="Taste" maxlength="33" />
             <div></div>
           </article>
           <article>
-            <input type="text" placeholder="Finish" />
+            <input type="text" placeholder="Finish" maxlength="33" />
             <div></div>
           </article>
           <article>
@@ -119,8 +119,8 @@
         </section>
       </form>
     </main>
-    <script src="../js/select-options.js"></script>
-    <script src="../js/add-review-page.js"></script>
-    <script src="../js/value-validation-request.js"></script>
+    <script src="../js/review/review-select-options.js"></script>
+    <script src="../js/review/edit-review-page.js"></script>
+    <script src="../js/review-validation-request.js"></script>
   </body>
 </html>

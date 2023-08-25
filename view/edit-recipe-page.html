@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/add-recipe-page.css" />
-    <link rel="shortcut icon" href="/martini-glass-solid.png" />
+    <link rel="shortcut icon" href="../martini-glass-solid.png" />
     <script
       src="https://kit.fontawesome.com/244f461546.js"
       crossorigin="anonymous"
@@ -63,10 +63,10 @@
         </section>
         <section></section>
       </nav>
-      <form action="">
+      <form>
         <section>
           <article>
-            <input type="text" placeholder="Name" />
+            <input type="text" placeholder="Name" maxlength="30" />
             <div></div>
           </article>
           <article>
@@ -90,7 +90,7 @@
             <div></div>
           </article>
           <article>
-            <input type="text" placeholder="lngredients" />
+            <input type="text" placeholder="lngredients" maxlength="30" />
             <div></div>
           </article>
         </section>
@@ -98,7 +98,7 @@
           <span>How to make</span>
           <article>
             <section>
-              <input type="text" placeholder="First-step" />
+              <input type="text" placeholder="First-step" maxlength="35" />
               <div></div>
             </section>
           </article>
@@ -110,6 +110,8 @@
         </section>
       </form>
     </main>
-    <script src="../js/add-recipe-page.js"></script>
+    <script src="../js/recipe/edit-recipe-page.js"></script>
+    <script src="../js/recipe/recipe-add-input.js"></script>
+    <script src="../js/recipe/recipe-validation-request.js"></script>
   </body>
 </html>
