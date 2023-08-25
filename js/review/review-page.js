@@ -9,6 +9,7 @@ const rightBtn = document.querySelector(
   "main > section > article:nth-of-type(1) > section:nth-of-type(3) > button"
 );
 
+//html 객체 생성 기능
 function createAlcObject(no, img) {
   const div = document.createElement("div");
 
@@ -38,13 +39,10 @@ function activePagingBtn(firstPage, lastPage) {
 
 // page에 따라 list를 갖고오는 기능
 async function getPageList(page) {
-  console.log(page);
   const response = await fetch(
     `http://127.0.0.1:8080/reviews/paging?page=${page}&size=${pageSize}`
   );
   const result = await response.json();
-
-  console.log(result);
   const listSection = document.querySelector(
     "main > section > article:nth-of-type(1) > section:nth-of-type(2)"
   );
@@ -92,7 +90,6 @@ async function getPageList(page) {
       const response = await fetch(`http://127.0.0.1:8080/reviews?no=${no}`);
       const result = await response.json();
       const modal = document.createElement("div");
-      // 실제 데이터로 교체
       modal.innerHTML = /*html*/ `
 			<section data-no="${result.no}">
 				<article>

@@ -1,3 +1,4 @@
+// How to make input태그 추가 및 빼기 기능
 (() => {
   const plusBtn = document.querySelector(
     "body > main > form > section > button:nth-of-type(1)"
@@ -28,7 +29,7 @@
     }
     const section = document.createElement("section");
     section.innerHTML = /*html*/ `
-		<input type="text" placeholder=${stepList[nextStep]} />
+		<input type="text" placeholder=${stepList[nextStep]} maxlength="35" />
 		<div></div>
 		`;
     howToMakeList.append(section);
