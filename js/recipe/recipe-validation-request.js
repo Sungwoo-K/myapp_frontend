@@ -36,7 +36,7 @@
   }
 
   //query에 따라서 fetch요청을 달리하는 기능
-  async function requestFetch(query, image, recipes) {
+  async function requestFetch(query, image, spirit, recipes) {
     return new Promise(async (resolve) => {
       const requestMethod = query ? "PUT" : "POST";
       const response = await fetch(`http://127.0.0.1:8080/recipes${query}`, {
@@ -47,7 +47,7 @@
         body: JSON.stringify({
           name: name.value,
           img: image,
-          spirit: selectSpirit.options[selectSpirit.selectedIndex].text,
+          spirit: spirit,
           vol: vol.value,
           ingredients: ingredients.value,
           recipe: recipes,
@@ -68,7 +68,6 @@
       "section:nth-of-type(2) > article:nth-of-type(1) input"
     );
     const urlQuery = window.location.search;
-
     if (name.value === "") {
       alert("이름을 입력해주세요.");
       name.focus();
@@ -80,7 +79,7 @@
       return;
     }
 
-    if (selectSpiritValue === "") {
+    if (urlQuery == "" && selectSpiritValue === "") {
       alert("종류를 선택해주세요.");
       return;
     }
@@ -108,11 +107,22 @@
       return;
     }
     const modifyImg = img.value ? await modifyFile(img.files[0]) : "";
+
+    let selectSpiritText = "";
+    if (selectSpiritValue !== "") {
+      selectSpiritText = selectSpirit.options[selectSpirit.selectedIndex].text;
+    }
+
     const recipeValuesArray = Array.from(recipeValues).map(
       (input) => input.value
     );
 
-    const message = await requestFetch(urlQuery, modifyImg, recipeValuesArray);
+    const message = await requestFetch(
+      urlQuery,
+      modifyImg,
+      selectSpiritText,
+      recipeValuesArray
+    );
 
     alert(message);
 

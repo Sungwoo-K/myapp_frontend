@@ -66,22 +66,27 @@
       selectSpirit.options[selectSpirit.selectedIndex].value;
     const selectOptionValue =
       selectOption.options[selectOption.selectedIndex].value;
+    const urlQuery = window.location.search;
     if (name.value === "") {
       alert("이름을 입력해주세요.");
       name.focus();
       return;
     }
 
-    if (img.value === "") {
+    if (urlQuery === "" && img.value === "") {
       alert("사진을 선택해주세요.");
       return;
     }
-    if (selectSpiritValue === "") {
+
+    if (urlQuery === "" && selectSpiritValue === "") {
       alert("종류를 선택해주세요.");
       return;
     }
 
-    if (selectOptionValue === "none") {
+    if (
+      (urlQuery === "" || selectSpiritValue !== "") &&
+      selectOptionValue === ""
+    ) {
       alert("옵션을 선택해주세요.");
       return;
     }
@@ -117,22 +122,23 @@
       return;
     }
 
-    const modifyImg = await modifyFile(img.files[0]);
+    const modifyImg = img.value ? await modifyFile(img.files[0]) : "";
 
     let combineSpiritAndOption = "";
 
-    if (selectOption.options[selectOption.selectedIndex].value === "notUse") {
-      combineSpiritAndOption = `${
-        selectSpirit.options[selectSpirit.selectedIndex].text
-      }`;
-    } else {
-      combineSpiritAndOption = `${
-        selectOption.options[selectOption.selectedIndex].text
-      } ${selectSpirit.options[selectSpirit.selectedIndex].text}`;
+    if (selectSpiritValue !== "") {
+      if (selectOption.options[selectOption.selectedIndex].value === "notUse") {
+        combineSpiritAndOption = `${
+          selectSpirit.options[selectSpirit.selectedIndex].text
+        }`;
+      } else {
+        combineSpiritAndOption = `${
+          selectOption.options[selectOption.selectedIndex].text
+        } ${selectSpirit.options[selectSpirit.selectedIndex].text}`;
+      }
     }
 
     // 검증이 완료 되었으므로 이 값들을 백엔드 서버쪽으로 fetch를 통해 post로 데이터 입력
-    const urlQuery = window.location.search;
 
     const message = await requestFetch(
       urlQuery,

@@ -28,7 +28,7 @@
       selectSpiritValue === "whisky"
     ) {
       selectOption.innerHTML = /*html*/ `
-    <option value="none">--Please choose an option--</option>
+    <option value="">--Please choose an option--</option>
     <option>블렌디드</option>
     <option>싱글몰트</option>
     <option>블렌디드몰트</option>
@@ -39,7 +39,7 @@
 
     if (selectSpiritValue === "americanWhiskey") {
       selectOption.innerHTML = /*html*/ `
-    <option value="none">--Please choose an option--</option>
+    <option value="">--Please choose an option--</option>
     <option>버번</option>
     <option>테네시</option>
     <option>라이</option>`;
@@ -48,7 +48,7 @@
 
     if (selectSpiritValue === "brandy") {
       selectOption.innerHTML = /*html*/ `
-    <option value="none">--Please choose an option--</option>
+    <option value="">--Please choose an option--</option>
     <option>꼬냑</option>
     <option>아르마냑</option>`;
       return;
@@ -56,7 +56,7 @@
 
     if (selectSpiritValue === "rum") {
       selectOption.innerHTML = /*html*/ `
-    <option value="none">--Please choose an option--</option>
+    <option value="">--Please choose an option--</option>
     <option>화이트</option>
     <option>골드</option>
     <option>다크</option>`;
