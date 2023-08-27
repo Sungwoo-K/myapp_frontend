@@ -148,6 +148,7 @@
 
     alert(message);
 
-    return (window.location.href = "http://127.0.0.1:5500");
+    return (window.location.href =
+      "http://127.0.0.1:5500/view/review-page.html");
   });
 })();
