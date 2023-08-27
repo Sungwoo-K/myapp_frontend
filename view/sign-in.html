@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/add-recipe-page.css" />
+    <link rel="stylesheet" href="../css/sign-in.css" />
     <link rel="shortcut icon" href="../martini-glass-solid.png" />
     <script
       src="https://kit.fontawesome.com/244f461546.js"
@@ -24,7 +24,7 @@
         </a>
       </section>
       <section>
-        <span>추가하기</span>
+        <span>로그인</span>
       </section>
       <section>
         <article><i class="fa-solid fa-circle-user"></i></article>
@@ -63,54 +63,33 @@
         </section>
         <section></section>
       </nav>
-      <form>
+      <form method="post">
         <section>
           <article>
-            <input type="text" placeholder="Name" maxlength="30" />
+            <span><i class="fa-solid fa-martini-glass"></i></span>
+            <span>CheersCraft</span>
+          </article>
+          <article>
+            <input type="email" required placeholder="Email" />
             <div></div>
           </article>
           <article>
-            <input type="file" accept="image/jpeg, image/png" />
-          </article>
-          <article>
-            <select name="spirit">
-              <option value="">--Please choose a spirit--</option>
-              <option value="whisky">위스키</option>
-              <option value="brandy">브랜디</option>
-              <option value="vodka">보드카</option>
-              <option value="tequilla">데킬라</option>
-              <option value="liqueur">리큐르</option>
-              <option value="rum">럼</option>
-              <option value="gin">진</option>
-            </select>
-          </article>
-          <article>
-            <input type="number" placeholder="Vol" max="100" min="1" />
+            <input
+              type="password"
+              required
+              maxlength="15"
+              placeholder="Password"
+            />
             <div></div>
           </article>
-          <article>
-            <input type="text" placeholder="Ingredients" maxlength="30" />
-            <div></div>
-          </article>
+          <button>Sign in</button>
         </section>
         <section>
-          <span>How to make</span>
-          <article>
-            <section>
-              <input type="text" placeholder="First-step" maxlength="35" />
-              <div></div>
-            </section>
-          </article>
-          <article>
-            <button>Create</button>
-          </article>
-          <button><i class="fa-solid fa-plus"></i></button>
-          <button><i class="fa-solid fa-minus"></i></button>
+          <button>Sign up</button>
         </section>
       </form>
     </main>
-    <script src="../js/recipe/recipe-add-input.js"></script>
-    <script src="../js/recipe/recipe-validation-request.js"></script>
+    <script src="../js/sign-in.js"></script>
     <script src="../js/link-sign-in.js"></script>
   </body>
 </html>

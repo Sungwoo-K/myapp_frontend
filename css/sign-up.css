@@ -1,0 +1,140 @@
+/* Config */
+@import "./config/reset.css";
+@import "./config/variables.css";
+@import "./config/global.css";
+
+/* Components */
+@import "./components/header.css";
+@import "./components/navigation-bar.css";
+
+header section:nth-of-type(2) span {
+  display: flex;
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 35px;
+  height: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  word-break: keep-all;
+}
+
+main > form {
+  width: 93%;
+  height: 95%;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "GmarketSansMedium";
+}
+
+main > form > section {
+  width: 570px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 80%;
+  border: thick double black;
+  border-radius: 10px;
+}
+
+main > form > section input {
+  font-size: 22px;
+}
+
+main > form > section article {
+  width: 70%;
+  position: relative;
+}
+
+main > form > section article:first-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  gap: 10px;
+}
+
+main > form > section article:first-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  gap: 10px;
+}
+
+main > form > section article:first-of-type span:first-of-type {
+  width: 30px;
+}
+
+main > form section input:focus {
+  outline: none;
+}
+
+main > form section input {
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  width: 99%;
+}
+
+main > form section article div {
+  background-color: black;
+  width: 0%;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  transition: width 0.15s ease-in-out;
+  border-radius: 3px;
+}
+
+main > form section article input:focus ~ div {
+  width: 100%;
+}
+
+main > form section article input:not(:placeholder-shown) ~ div {
+  width: 100%;
+}
+
+main > form section button {
+  width: 40%;
+  height: 8%;
+  background: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  transition: color 0.3s;
+  font-size: 18px;
+  font-family: "GmarketSansMedium";
+}
+
+main > form section button:hover {
+  color: white;
+}
+
+main > form section button::after {
+  background: black;
+  content: "";
+  position: absolute;
+  z-index: -1;
+}
+
+main > form section button::after {
+  height: 100%;
+  left: -80%;
+  top: 0;
+  transform: skew(50deg);
+  transition-duration: 0.3s;
+  transform-origin: top left;
+  width: 0;
+}
+
+main > form section button:hover:after {
+  height: 100%;
+  width: 180%;
+}
