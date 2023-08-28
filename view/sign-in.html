@@ -63,19 +63,20 @@
         </section>
         <section></section>
       </nav>
-      <form method="post">
+      <form action="http://localhost:8080/auth/signin" method="post">
         <section>
           <article>
             <span><i class="fa-solid fa-martini-glass"></i></span>
             <span>CheersCraft</span>
           </article>
           <article>
-            <input type="email" required placeholder="Email" />
+            <input type="email" name="email" required placeholder="Email" />
             <div></div>
           </article>
           <article>
             <input
               type="password"
+              name="password"
               required
               maxlength="15"
               placeholder="Password"

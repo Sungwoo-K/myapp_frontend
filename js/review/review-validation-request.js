@@ -41,6 +41,7 @@
         method: `${requestMethod}`,
         headers: {
           "content-type": "application/json",
+          Authorization: `Bearer ${getCookie("token")}`,
         },
         body: JSON.stringify({
           name: name.value,
@@ -122,6 +123,8 @@
       return;
     }
 
+    console.log(getCookie("token"));
+
     const modifyImg = img.value ? await modifyFile(img.files[0]) : "";
 
     let combineSpiritAndOption = "";
@@ -147,8 +150,5 @@
     );
 
     alert(message);
-
-    return (window.location.href =
-      "http://127.0.0.1:5500/view/review-page.html");
   });
 })();
