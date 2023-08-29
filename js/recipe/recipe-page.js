@@ -49,10 +49,13 @@ function activePagingBtn(firstPage, lastPage) {
 }
 
 // page에 따라 list를 갖고오는 기능
-async function getPageList(page) {
-  const response = await fetch(
-    `http://127.0.0.1:8080/recipes/paging?page=${page}&size=${pageSize}`
-  );
+async function getPageList(page, searchKey, searchValue) {
+  if (searchKey && searchValue) {
+    url = `http://127.0.0.1:8080/recipes/paging/search?page=${page}&size=${pageSize}&${searchKey}=${searchValue}`;
+  } else {
+    url = `http://127.0.0.1:8080/recipes/paging?page=${page}&size=${pageSize}`;
+  }
+  const response = await fetch(url);
   const result = await response.json();
 
   const listUpstairsSection = document.querySelector(
@@ -101,6 +104,24 @@ async function getPageList(page) {
 (() => {
   window.addEventListener("DOMContentLoaded", () => {
     getPageList(0);
+  });
+})();
+
+// Search
+(() => {
+  const form = document.querySelector("form");
+  const input = form.querySelector("input");
+  const select = form.querySelector("select");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const option = select.options[select.selectedIndex].value;
+    const inputValue = input.value;
+    if (option === "vol" && isNaN(+inputValue)) {
+      alert("숫자를 입력해주세요.");
+      return;
+    }
+    getPageList(0, option, inputValue);
   });
 })();
 
