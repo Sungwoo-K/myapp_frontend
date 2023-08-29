@@ -55,9 +55,14 @@
         }),
       });
 
-      const result = await response.json();
+      if (response.status === 401) {
+        resolve(response.status);
+      }
+      if (response.status === 201 || response.status === 200) {
+        const result = await response.json();
 
-      resolve(result.message);
+        resolve(result.message);
+      }
     });
   }
 
@@ -123,8 +128,6 @@
       return;
     }
 
-    console.log(getCookie("token"));
-
     const modifyImg = img.value ? await modifyFile(img.files[0]) : "";
 
     let combineSpiritAndOption = "";
@@ -149,6 +152,13 @@
       combineSpiritAndOption
     );
 
+    if (message === 401) {
+      alert("수정할 권한이 없습니다.");
+      return;
+    }
+
     alert(message);
+
+    form.submit();
   });
 })();

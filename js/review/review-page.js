@@ -9,6 +9,17 @@ const rightBtn = document.querySelector(
   "main > section > article:nth-of-type(1) > section:nth-of-type(3) > button"
 );
 
+function getCookie(name) {
+  let matches = document.cookie.match(
+    new RegExp(
+      "(?:^|; )" +
+        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+        "=([^;]*)"
+    )
+  );
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 //html 객체 생성 기능
 function createAlcObject(no, img) {
   const div = document.createElement("div");
@@ -94,7 +105,7 @@ async function getPageList(page) {
 			<section data-no="${result.no}">
 				<article>
 					<img src=${result.img} />
-					<button><a href="./view/edit-review-page.html?no=${no}">수정하기</a></button>
+					<button><a href="/view/edit-review-page.html?no=${no}">수정하기</a></button>
 					<button>삭제하기</button>
 				</article>
 				<article>
@@ -144,8 +155,35 @@ async function getPageList(page) {
         "body > div > section > article:nth-of-type(2) > button"
       );
 
+      const removeDataBtn = document.querySelector(
+        "body > div > section > article:nth-of-type(1) > button:nth-of-type(2)"
+      );
+
       removeBtn.addEventListener("click", () => {
         removeBtn.closest("div").remove();
+      });
+
+      removeDataBtn.addEventListener("click", async () => {
+        const no = removeBtn.closest("section").dataset.no;
+        const responce = await fetch(`http://127.0.0.1:8080/reviews/${no}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${getCookie("token")}`,
+          },
+        });
+
+        if (responce.status === 401) {
+          alert("삭제할 권한이 없습니다.");
+          return;
+        }
+
+        if (responce.status === 404) {
+          alert("존재하지 않는 게시물입니다.");
+          return;
+        }
+
+        alert("게시물을 삭제했습니다.");
+        window.location.reload();
       });
     }
   });

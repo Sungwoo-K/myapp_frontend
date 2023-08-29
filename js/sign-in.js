@@ -1,3 +1,21 @@
+function getCookie(name) {
+  let matches = document.cookie.match(
+    new RegExp(
+      "(?:^|; )" +
+        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+        "=([^;]*)"
+    )
+  );
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+(() => {
+  if (getCookie("token")) {
+    alert("이미 로그인하셨습니다.");
+    history.back();
+  }
+})();
+
 (() => {
   const signUpBtn = document.querySelector("form section:last-of-type button");
 

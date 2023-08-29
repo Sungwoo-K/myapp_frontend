@@ -43,6 +43,7 @@
         method: `${requestMethod}`,
         headers: {
           "content-type": "application/json",
+          Authorization: `Bearer ${getCookie("token")}`,
         },
         body: JSON.stringify({
           name: name.value,
@@ -54,9 +55,15 @@
         }),
       });
 
-      const result = await response.json();
+      if (response.status === 401) {
+        resolve(response.status);
+      }
 
-      resolve(result.message);
+      if (response.status === 201 || response.status === 200) {
+        const result = await response.json();
+
+        resolve(result.message);
+      }
     });
   }
 
@@ -124,9 +131,13 @@
       recipeValuesArray
     );
 
+    if (message === 401) {
+      alert("수정할 권한이 없습니다.");
+      return;
+    }
+
     alert(message);
 
-    return (window.location.href =
-      "http://127.0.0.1:5500/view/recipe-page.html");
+    form.submit();
   });
 })();

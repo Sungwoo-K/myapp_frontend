@@ -158,8 +158,35 @@ async function getPageList(page) {
       const removeBtn = document.querySelector(
         "body > div > section > article:nth-of-type(2) > button"
       );
+
+      const removeDataBtn = document.querySelector(
+        "body > div > section > article:nth-of-type(1) > button:nth-of-type(2)"
+      );
       removeBtn.addEventListener("click", () => {
         removeBtn.closest("div").remove();
+      });
+
+      removeDataBtn.addEventListener("click", async () => {
+        const no = removeBtn.closest("section").dataset.no;
+        const responce = await fetch(`http://127.0.0.1:8080/recipes/${no}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${getCookie("token")}`,
+          },
+        });
+
+        if (responce.status === 401) {
+          alert("삭제할 권한이 없습니다.");
+          return;
+        }
+
+        if (responce.status === 404) {
+          alert("존재하지 않는 게시물입니다.");
+          return;
+        }
+
+        alert("게시물을 삭제했습니다.");
+        window.location.reload();
       });
     }
   });
