@@ -163,13 +163,16 @@ async function getPageList(page, pageSize, searchKey, searchValue) {
 (() => {
   window.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth < 1120) {
+      windowState = "below1120";
       getPageList(0, 4);
       return;
     }
     if (window.innerWidth < 1400) {
+      windowState = "below1400";
       getPageList(0, 6);
       return;
     }
+    windowState = "above1400";
     getPageList(0, 8);
   });
 })();
