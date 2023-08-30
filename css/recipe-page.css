@@ -75,6 +75,9 @@ main > section article section div {
   border-radius: 10px;
   background-color: white;
   gap: 15px;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 }
 
 main > section article section div img {

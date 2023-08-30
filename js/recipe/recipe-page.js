@@ -79,6 +79,15 @@ async function getPageList(page, searchKey, searchValue) {
       );
     }
   }
+  const contents = document.querySelectorAll(
+    "main > section > article:nth-of-type(2) section div"
+  );
+  setTimeout(() => {
+    for (let item of contents) {
+      item.style.opacity = "1";
+      item.style.transform = "translateY(0)";
+    }
+  }, 100);
 
   isFirstPage = result.first ? result.first : false;
   isLastPage = result.last ? result.last : false;
@@ -127,15 +136,17 @@ async function getPageList(page, searchKey, searchValue) {
 
 // 모달 창
 (() => {
-  const list = document.querySelector("main > section > article > section");
-  list.addEventListener("click", async (e) => {
-    if (e.target.tagName === "BUTTON") {
-      const no = e.target.closest("div").dataset.no;
-      const response = await fetch(`http://127.0.0.1:8080/recipes?no=${no}`);
-      const result = await response.json();
-      const modal = document.createElement("div");
-      // 실제 데이터로 교체
-      modal.innerHTML = /*html*/ `
+  const lists = document.querySelectorAll("main > section > article > section");
+  lists.forEach((list) =>
+    list.addEventListener("click", async (e) => {
+      if (e.target.tagName === "BUTTON") {
+        const no = e.target.closest("div").dataset.no;
+        console.log(no);
+        const response = await fetch(`http://127.0.0.1:8080/recipes?no=${no}`);
+        const result = await response.json();
+        const modal = document.createElement("div");
+        // 실제 데이터로 교체
+        modal.innerHTML = /*html*/ `
 			<section data-no="${result.no}">
         <article>
           <img src=${result.img} />
@@ -165,50 +176,51 @@ async function getPageList(page, searchKey, searchValue) {
       </section>
 			`;
 
-      document.body.prepend(modal);
+        document.body.prepend(modal);
 
-      const recipeSection = document.querySelector(
-        "body > div > section > article:nth-of-type(2) > section:last-of-type"
-      );
-      for (let prop in result.recipe) {
-        recipeSection.append(createRecipe(prop, result.recipe[prop]));
-      }
-      setTimeout(() => {
-        document.querySelector("body > div > section").style.opacity = "1";
-      }, 100);
-      const removeBtn = document.querySelector(
-        "body > div > section > article:nth-of-type(2) > button"
-      );
+        const recipeSection = document.querySelector(
+          "body > div > section > article:nth-of-type(2) > section:last-of-type"
+        );
+        for (let prop in result.recipe) {
+          recipeSection.append(createRecipe(prop, result.recipe[prop]));
+        }
+        setTimeout(() => {
+          document.querySelector("body > div > section").style.opacity = "1";
+        }, 100);
+        const removeBtn = document.querySelector(
+          "body > div > section > article:nth-of-type(2) > button"
+        );
 
-      const removeDataBtn = document.querySelector(
-        "body > div > section > article:nth-of-type(1) > button:nth-of-type(2)"
-      );
-      removeBtn.addEventListener("click", () => {
-        removeBtn.closest("div").remove();
-      });
-
-      removeDataBtn.addEventListener("click", async () => {
-        const no = removeBtn.closest("section").dataset.no;
-        const responce = await fetch(`http://127.0.0.1:8080/recipes/${no}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${getCookie("token")}`,
-          },
+        const removeDataBtn = document.querySelector(
+          "body > div > section > article:nth-of-type(1) > button:nth-of-type(2)"
+        );
+        removeBtn.addEventListener("click", () => {
+          removeBtn.closest("div").remove();
         });
 
-        if (responce.status === 401) {
-          alert("삭제할 권한이 없습니다.");
-          return;
-        }
+        removeDataBtn.addEventListener("click", async () => {
+          const no = removeBtn.closest("section").dataset.no;
+          const responce = await fetch(`http://127.0.0.1:8080/recipes/${no}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${getCookie("token")}`,
+            },
+          });
 
-        if (responce.status === 404) {
-          alert("존재하지 않는 게시물입니다.");
-          return;
-        }
+          if (responce.status === 401) {
+            alert("삭제할 권한이 없습니다.");
+            return;
+          }
 
-        alert("게시물을 삭제했습니다.");
-        window.location.reload();
-      });
-    }
-  });
+          if (responce.status === 404) {
+            alert("존재하지 않는 게시물입니다.");
+            return;
+          }
+
+          alert("게시물을 삭제했습니다.");
+          window.location.reload();
+        });
+      }
+    })
+  );
 })();

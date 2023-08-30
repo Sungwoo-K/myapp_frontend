@@ -68,6 +68,16 @@ async function getPageList(page, searchKey, searchValue) {
     listSection.append(createAlcObject(item.no, item.img));
   }
 
+  const contents = document.querySelectorAll(
+    "main > section > article:first-of-type > section:nth-of-type(2) div"
+  );
+  setTimeout(() => {
+    for (let item of contents) {
+      item.style.opacity = "1";
+      item.style.transform = "translateY(0)";
+    }
+  }, 100);
+
   isFirstPage = result.first ? result.first : false;
   isLastPage = result.last ? result.last : false;
   activePagingBtn(isFirstPage, isLastPage);
