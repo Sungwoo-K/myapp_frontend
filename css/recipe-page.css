@@ -70,8 +70,8 @@ main > section article section div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 17%;
-  height: 80%;
+  width: 250px;
+  height: 320px;
   border-radius: 10px;
   background-color: white;
   gap: 15px;

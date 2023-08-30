@@ -29,7 +29,7 @@
     }
     const section = document.createElement("section");
     section.innerHTML = /*html*/ `
-		<input type="text" placeholder=${stepList[nextStep]} maxlength="35" />
+		<input type="text" placeholder=${stepList[nextStep]} maxlength="40" />
 		<div></div>
 		`;
     howToMakeList.append(section);

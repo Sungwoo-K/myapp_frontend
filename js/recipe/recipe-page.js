@@ -1,7 +1,7 @@
 let currentPage = 0;
-let pageSize = 8;
 let isFirstPage;
 let isLastPage;
+let windowState = "";
 const leftBtn = document.querySelector(
   "main > section > article:nth-of-type(1) > button"
 );
@@ -49,7 +49,7 @@ function activePagingBtn(firstPage, lastPage) {
 }
 
 // page에 따라 list를 갖고오는 기능
-async function getPageList(page, searchKey, searchValue) {
+async function getPageList(page, pageSize, searchKey, searchValue) {
   if (searchKey && searchValue) {
     url = `http://127.0.0.1:8080/recipes/paging/search?page=${page}&size=${pageSize}&${searchKey}=${searchValue}`;
   } else {
@@ -97,22 +97,80 @@ async function getPageList(page, searchKey, searchValue) {
 // 버튼을 누를 때마다 page 넘기기
 (() => {
   rightBtn.addEventListener("click", () => {
+    if (window.innerWidth < 1120) {
+      const updatePage = currentPage + 1;
+      getPageList(updatePage, 4);
+      currentPage = updatePage;
+      return;
+    }
+    if (window.innerWidth < 1400) {
+      const updatePage = currentPage + 1;
+      getPageList(updatePage, 6);
+      currentPage = updatePage;
+      return;
+    }
     const updatePage = currentPage + 1;
-    getPageList(updatePage);
+    getPageList(updatePage, 8);
     currentPage = updatePage;
   });
 
   leftBtn.addEventListener("click", () => {
+    if (window.innerWidth < 1120) {
+      const updatePage = currentPage - 1;
+      getPageList(currentPage - 1, 4);
+      currentPage = updatePage;
+      return;
+    }
+    if (window.innerWidth < 1400) {
+      const updatePage = currentPage - 1;
+      getPageList(currentPage - 1, 6);
+      currentPage = updatePage;
+      return;
+    }
     const updatePage = currentPage - 1;
-    getPageList(currentPage - 1);
+    getPageList(currentPage - 1, 8);
     currentPage = updatePage;
+  });
+})();
+
+(() => {
+  window.addEventListener("resize", () => {
+    if (window.innerWidth < 1120 && windowState !== "below1120") {
+      currentPage = 0;
+      windowState = "below1120";
+      getPageList(0, 4);
+      return;
+    }
+    if (
+      1120 <= window.innerWidth &&
+      window.innerWidth < 1400 &&
+      windowState !== "below1400"
+    ) {
+      currentPage = 0;
+      windowState = "below1400";
+      getPageList(0, 6);
+      return;
+    }
+    if (window.innerWidth >= 1400 && windowState !== "above1400") {
+      currentPage = 0;
+      windowState = "above1400";
+      getPageList(0, 8);
+    }
   });
 })();
 
 // 첫 창 list 불러오기
 (() => {
   window.addEventListener("DOMContentLoaded", () => {
-    getPageList(0);
+    if (window.innerWidth < 1120) {
+      getPageList(0, 4);
+      return;
+    }
+    if (window.innerWidth < 1400) {
+      getPageList(0, 6);
+      return;
+    }
+    getPageList(0, 8);
   });
 })();
 
@@ -141,7 +199,6 @@ async function getPageList(page, searchKey, searchValue) {
     list.addEventListener("click", async (e) => {
       if (e.target.tagName === "BUTTON") {
         const no = e.target.closest("div").dataset.no;
-        console.log(no);
         const response = await fetch(`http://127.0.0.1:8080/recipes?no=${no}`);
         const result = await response.json();
         const modal = document.createElement("div");

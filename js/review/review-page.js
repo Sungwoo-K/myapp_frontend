@@ -1,8 +1,8 @@
 let currentPage = 0;
-let pageSize = 4;
 let isFirstPage;
 let isLastPage;
 let url = "";
+let windowState = "";
 const leftBtn = document.querySelector(
   "main > section > article:nth-of-type(1) > section:nth-of-type(1) > button"
 );
@@ -50,7 +50,7 @@ function activePagingBtn(firstPage, lastPage) {
 }
 
 // page에 따라 list를 갖고오는 기능
-async function getPageList(page, searchKey, searchValue) {
+async function getPageList(page, pageSize, searchKey, searchValue) {
   if (searchKey && searchValue) {
     url = `http://127.0.0.1:8080/reviews/paging/search?page=${page}&size=${pageSize}&${searchKey}=${searchValue}`;
   } else {
@@ -85,22 +85,80 @@ async function getPageList(page, searchKey, searchValue) {
 //버튼을 누를 때마다 page 넘기기
 (() => {
   rightBtn.addEventListener("click", () => {
+    if (window.innerWidth < 1120) {
+      const updatePage = currentPage + 1;
+      getPageList(updatePage, 2);
+      currentPage = updatePage;
+      return;
+    }
+    if (window.innerWidth < 1400) {
+      const updatePage = currentPage + 1;
+      getPageList(updatePage, 3);
+      currentPage = updatePage;
+      return;
+    }
     const updatePage = currentPage + 1;
-    getPageList(updatePage);
+    getPageList(updatePage, 4);
     currentPage = updatePage;
   });
 
   leftBtn.addEventListener("click", () => {
+    if (window.innerWidth < 1120) {
+      const updatePage = currentPage - 1;
+      getPageList(currentPage - 1, 2);
+      currentPage = updatePage;
+      return;
+    }
+    if (window.innerWidth < 1400) {
+      const updatePage = currentPage - 1;
+      getPageList(currentPage - 1, 3);
+      currentPage = updatePage;
+      return;
+    }
     const updatePage = currentPage - 1;
-    getPageList(currentPage - 1);
+    getPageList(currentPage - 1, 4);
     currentPage = updatePage;
+  });
+})();
+
+(() => {
+  window.addEventListener("resize", () => {
+    if (window.innerWidth < 1120 && windowState !== "below1120") {
+      currentPage = 0;
+      windowState = "below1120";
+      getPageList(0, 2);
+      return;
+    }
+    if (
+      1120 <= window.innerWidth &&
+      window.innerWidth < 1400 &&
+      windowState !== "below1400"
+    ) {
+      currentPage = 0;
+      windowState = "below1400";
+      getPageList(0, 3);
+      return;
+    }
+    if (window.innerWidth >= 1400 && windowState !== "above1400") {
+      currentPage = 0;
+      windowState = "above1400";
+      getPageList(0, 4);
+    }
   });
 })();
 
 // 첫 창 list 불러오기
 (() => {
   window.addEventListener("DOMContentLoaded", () => {
-    getPageList(0);
+    if (window.innerWidth < 1120) {
+      getPageList(0, 2);
+      return;
+    }
+    if (window.innerWidth < 1400) {
+      getPageList(0, 3);
+      return;
+    }
+    getPageList(0, 4);
   });
 })();
 
@@ -118,7 +176,11 @@ async function getPageList(page, searchKey, searchValue) {
       alert("숫자를 입력해주세요.");
       return;
     }
-    getPageList(0, option, inputValue);
+    if (window.innerWidth < 1400) {
+      getPageList(0, 3, option, inputValue);
+      return;
+    }
+    getPageList(0, 4, option, inputValue);
   });
 })();
 
