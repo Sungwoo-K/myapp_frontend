@@ -56,7 +56,6 @@ async function getPageList(page, searchKey, searchValue) {
   } else {
     url = `http://127.0.0.1:8080/reviews/paging?page=${page}&size=${pageSize}`;
   }
-  console.log(url);
   const response = await fetch(url);
   const result = await response.json();
   const listSection = document.querySelector(

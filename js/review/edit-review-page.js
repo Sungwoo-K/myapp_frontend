@@ -1,5 +1,5 @@
 (() => {
-  window.addEventListener("DOMContentLoaded", async () => {
+  window.addEventListener("load", async () => {
     const form = document.querySelector("form");
     const name = form.querySelector("input");
     const score = form.querySelector(
@@ -12,7 +12,17 @@
     const taste = form.querySelector("article:nth-of-type(6) input");
     const finish = form.querySelector("article:nth-of-type(7) input");
     const query = window.location.search;
-    const response = await fetch(`http://127.0.0.1:8080/reviews${query}`);
+    const response = await fetch(`http://127.0.0.1:8080/reviews/edit${query}`, {
+      headers: {
+        Authorization: `Bearer ${getCookie("token")}`,
+      },
+    });
+
+    if (response.status === 401) {
+      alert("게시물을 수정할 권한이 없습니다.");
+      history.back();
+      return;
+    }
 
     const result = await response.json();
 

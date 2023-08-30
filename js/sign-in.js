@@ -10,13 +10,6 @@ function getCookie(name) {
 }
 
 (() => {
-  if (getCookie("token")) {
-    alert("이미 로그인하셨습니다.");
-    history.back();
-  }
-})();
-
-(() => {
   const signUpBtn = document.querySelector("form section:last-of-type button");
 
   signUpBtn.addEventListener("click", (e) => {
