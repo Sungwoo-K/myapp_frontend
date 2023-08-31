@@ -2,6 +2,7 @@ let currentPage = 0;
 let isFirstPage;
 let isLastPage;
 let windowState = "";
+let pageSize;
 const leftBtn = document.querySelector(
   "main > section > article:nth-of-type(1) > button"
 );
@@ -49,7 +50,26 @@ function activePagingBtn(firstPage, lastPage) {
 }
 
 // page에 따라 list를 갖고오는 기능
-async function getPageList(page, pageSize, searchKey, searchValue) {
+async function getPageList(page, searchKey, searchValue) {
+  if (window.innerWidth < 1120) {
+    if (window.innerHeight > 780) {
+      pageSize = 4;
+    } else {
+      pageSize = 2;
+    }
+  } else if (1120 <= window.innerWidth && window.innerWidth < 1420) {
+    if (window.innerHeight > 780) {
+      pageSize = 6;
+    } else {
+      pageSize = 3;
+    }
+  } else if (window.innerWidth >= 1420) {
+    if (window.innerHeight > 780) {
+      pageSize = 8;
+    } else {
+      pageSize = 4;
+    }
+  }
   if (searchKey && searchValue) {
     url = `http://127.0.0.1:8080/recipes/paging/search?page=${page}&size=${pageSize}&${searchKey}=${searchValue}`;
   } else {
@@ -67,16 +87,22 @@ async function getPageList(page, pageSize, searchKey, searchValue) {
   listUpstairsSection.innerHTML = "";
   listDownstairsSection.innerHTML = "";
 
-  for (i = 0; i < result.numberOfElements; i++) {
-    if (i < pageSize / 2) {
-      listUpstairsSection.append(
-        createAlcObject(result.content[i].no, result.content[i].img)
-      );
+  if (window.innerHeight > 780) {
+    for (i = 0; i < result.numberOfElements; i++) {
+      if (i < pageSize / 2) {
+        listUpstairsSection.append(
+          createAlcObject(result.content[i].no, result.content[i].img)
+        );
+      }
+      if (pageSize / 2 <= i) {
+        listDownstairsSection.append(
+          createAlcObject(result.content[i].no, result.content[i].img)
+        );
+      }
     }
-    if (pageSize / 2 <= i) {
-      listDownstairsSection.append(
-        createAlcObject(result.content[i].no, result.content[i].img)
-      );
+  } else {
+    for (let item of result.content) {
+      listUpstairsSection.append(createAlcObject(item.no, item.img));
     }
   }
   const contents = document.querySelectorAll(
@@ -97,64 +123,81 @@ async function getPageList(page, pageSize, searchKey, searchValue) {
 // 버튼을 누를 때마다 page 넘기기
 (() => {
   rightBtn.addEventListener("click", () => {
-    if (window.innerWidth < 1120) {
-      const updatePage = currentPage + 1;
-      getPageList(updatePage, 4);
-      currentPage = updatePage;
-      return;
-    }
-    if (window.innerWidth < 1400) {
-      const updatePage = currentPage + 1;
-      getPageList(updatePage, 6);
-      currentPage = updatePage;
-      return;
-    }
     const updatePage = currentPage + 1;
-    getPageList(updatePage, 8);
+    getPageList(updatePage);
     currentPage = updatePage;
   });
 
   leftBtn.addEventListener("click", () => {
-    if (window.innerWidth < 1120) {
-      const updatePage = currentPage - 1;
-      getPageList(currentPage - 1, 4);
-      currentPage = updatePage;
-      return;
-    }
-    if (window.innerWidth < 1400) {
-      const updatePage = currentPage - 1;
-      getPageList(currentPage - 1, 6);
-      currentPage = updatePage;
-      return;
-    }
     const updatePage = currentPage - 1;
-    getPageList(currentPage - 1, 8);
+    getPageList(currentPage - 1);
     currentPage = updatePage;
   });
 })();
 
 (() => {
   window.addEventListener("resize", () => {
-    if (window.innerWidth < 1120 && windowState !== "below1120") {
+    if (
+      window.innerWidth < 1120 &&
+      window.innerHeight > 780 &&
+      windowState !== "below1120Line2"
+    ) {
       currentPage = 0;
-      windowState = "below1120";
-      getPageList(0, 4);
+      windowState = "below1120Line2";
+      getPageList(0);
+      return;
+    }
+    if (
+      window.innerWidth < 1120 &&
+      window.innerHeight <= 780 &&
+      windowState !== "below1120Line1"
+    ) {
+      currentPage = 0;
+      windowState = "below1120Line1";
+      getPageList(0);
       return;
     }
     if (
       1120 <= window.innerWidth &&
-      window.innerWidth < 1400 &&
-      windowState !== "below1400"
+      window.innerWidth < 1420 &&
+      window.innerHeight > 780 &&
+      windowState !== "below1420Line2"
     ) {
       currentPage = 0;
-      windowState = "below1400";
-      getPageList(0, 6);
+      windowState = "below1420Line2";
+      getPageList(0);
       return;
     }
-    if (window.innerWidth >= 1400 && windowState !== "above1400") {
+    if (
+      1120 <= window.innerWidth &&
+      window.innerWidth < 1420 &&
+      window.innerHeight <= 780 &&
+      windowState !== "below1420Line1"
+    ) {
       currentPage = 0;
-      windowState = "above1400";
-      getPageList(0, 8);
+      windowState = "below1420Line1";
+      getPageList(0);
+      return;
+    }
+    if (
+      window.innerWidth >= 1420 &&
+      window.innerHeight > 780 &&
+      windowState !== "above1420Line2"
+    ) {
+      currentPage = 0;
+      windowState = "above1420Line2";
+      getPageList(0);
+      return;
+    }
+    if (
+      window.innerWidth >= 1420 &&
+      window.innerHeight <= 780 &&
+      windowState !== "above1420Line1"
+    ) {
+      currentPage = 0;
+      windowState = "above1420Line1";
+      getPageList(0);
+      return;
     }
   });
 })();
@@ -164,16 +207,16 @@ async function getPageList(page, pageSize, searchKey, searchValue) {
   window.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth < 1120) {
       windowState = "below1120";
-      getPageList(0, 4);
+      getPageList(0);
       return;
     }
-    if (window.innerWidth < 1400) {
-      windowState = "below1400";
-      getPageList(0, 6);
+    if (window.innerWidth < 1420) {
+      windowState = "below1420";
+      getPageList(0);
       return;
     }
-    windowState = "above1400";
-    getPageList(0, 8);
+    windowState = "above1420";
+    getPageList(0);
   });
 })();
 
