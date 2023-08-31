@@ -18,8 +18,10 @@ function getCookie(name) {
   ];
 
   const image = document.querySelector("img");
-
   image.src = imageList[Math.floor(Math.random() * imageList.length)];
+  setInterval(() => {
+    image.src = imageList[Math.floor(Math.random() * imageList.length)];
+  }, 5000);
 })();
 
 (() => {
