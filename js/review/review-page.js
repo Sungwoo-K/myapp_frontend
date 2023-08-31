@@ -4,6 +4,13 @@ let isLastPage;
 let url = "";
 let windowState = "";
 let pageSize;
+let option = "";
+let inputValue = "";
+let trigger = false;
+
+const form = document.querySelector("form");
+const input = form.querySelector("input");
+const select = form.querySelector("select");
 const leftBtn = document.querySelector(
   "main > section > article:nth-of-type(1) > section:nth-of-type(1) > button"
 );
@@ -92,24 +99,46 @@ async function getPageList(page, searchKey, searchValue) {
 }
 
 //버튼을 누를 때마다 page 넘기기
-(() => {
-  rightBtn.addEventListener("click", () => {
-    const updatePage = currentPage + 1;
+const handleRightBtn = (option, inputValue) => {
+  const updatePage = currentPage + 1;
+  if ((option, inputValue)) {
+    getPageList(updatePage, option, inputValue);
+  } else {
     getPageList(updatePage);
-    currentPage = updatePage;
-  });
+  }
+  currentPage = updatePage;
+};
+const handleLeftBtn = (option, inputValue) => {
+  const updatePage = currentPage - 1;
+  if ((option, inputValue)) {
+    getPageList(updatePage, option, inputValue);
+  } else {
+    getPageList(updatePage);
+  }
+  currentPage = updatePage;
+};
 
-  leftBtn.addEventListener("click", () => {
-    const updatePage = currentPage - 1;
-    getPageList(currentPage - 1);
-    currentPage = updatePage;
-  });
-})();
+const handleLeftBtnListener = () => {
+  handleLeftBtn(option, inputValue);
+};
 
+const handleRightBtnListener = () => {
+  handleRightBtn(option, inputValue);
+};
+
+// 사이즈 변경시 개수 변경
 (() => {
   window.addEventListener("resize", () => {
     if (window.innerWidth < 1120 && windowState !== "below1120") {
+      input.value = "";
       currentPage = 0;
+      if (trigger) {
+        leftBtn.removeEventListener("click", handleLeftBtnListener);
+        rightBtn.removeEventListener("click", handleRightBtnListener);
+        leftBtn.addEventListener("click", handleLeftBtn);
+        rightBtn.addEventListener("click", handleRightBtn);
+        trigger = false;
+      }
       windowState = "below1120";
       getPageList(0);
       return;
@@ -119,13 +148,29 @@ async function getPageList(page, searchKey, searchValue) {
       window.innerWidth < 1400 &&
       windowState !== "below1400"
     ) {
+      input.value = "";
       currentPage = 0;
+      if (trigger) {
+        leftBtn.removeEventListener("click", handleLeftBtnListener);
+        rightBtn.removeEventListener("click", handleRightBtnListener);
+        leftBtn.addEventListener("click", handleLeftBtn);
+        rightBtn.addEventListener("click", handleRightBtn);
+        trigger = false;
+      }
       windowState = "below1400";
       getPageList(0);
       return;
     }
     if (window.innerWidth >= 1400 && windowState !== "above1400") {
+      input.value = "";
       currentPage = 0;
+      if (trigger) {
+        leftBtn.removeEventListener("click", handleLeftBtnListener);
+        rightBtn.removeEventListener("click", handleRightBtnListener);
+        leftBtn.addEventListener("click", handleLeftBtn);
+        rightBtn.addEventListener("click", handleRightBtn);
+        trigger = false;
+      }
       windowState = "above1400";
       getPageList(0);
     }
@@ -135,6 +180,8 @@ async function getPageList(page, searchKey, searchValue) {
 // 첫 창 list 불러오기
 (() => {
   window.addEventListener("DOMContentLoaded", () => {
+    leftBtn.addEventListener("click", handleLeftBtn);
+    rightBtn.addEventListener("click", handleRightBtn);
     if (window.innerWidth < 1120) {
       getPageList(0);
       windowState = "below1120";
@@ -152,23 +199,24 @@ async function getPageList(page, searchKey, searchValue) {
 
 // Search
 (() => {
-  const form = document.querySelector("form");
-  const input = form.querySelector("input");
-  const select = form.querySelector("select");
-
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const option = select.options[select.selectedIndex].value;
-    const inputValue = input.value;
-    if (option === "vol" && isNaN(+inputValue)) {
+    option = select.options[select.selectedIndex].value;
+    inputValue = input.value;
+    if ((option === "volup" || option === "voldown") && isNaN(+inputValue)) {
       alert("숫자를 입력해주세요.");
       return;
     }
-    if (window.innerWidth < 1400) {
-      getPageList(0, option, inputValue);
-      return;
-    }
+    currentPage = 0;
     getPageList(0, option, inputValue);
+
+    if (!trigger) {
+      leftBtn.removeEventListener("click", handleLeftBtn);
+      rightBtn.removeEventListener("click", handleRightBtn);
+      leftBtn.addEventListener("click", handleLeftBtnListener);
+      rightBtn.addEventListener("click", handleRightBtnListener);
+      trigger = true;
+    }
   });
 })();
 

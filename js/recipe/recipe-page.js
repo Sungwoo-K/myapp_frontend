@@ -3,6 +3,14 @@ let isFirstPage;
 let isLastPage;
 let windowState = "";
 let pageSize;
+let url = "";
+let option = "";
+let inputValue = "";
+let trigger = false;
+
+const form = document.querySelector("form");
+const input = form.querySelector("input");
+const select = form.querySelector("select");
 const leftBtn = document.querySelector(
   "main > section > article:nth-of-type(1) > button"
 );
@@ -121,20 +129,34 @@ async function getPageList(page, searchKey, searchValue) {
 }
 
 // 버튼을 누를 때마다 page 넘기기
-(() => {
-  rightBtn.addEventListener("click", () => {
-    const updatePage = currentPage + 1;
+const handleRightBtn = (option, inputValue) => {
+  const updatePage = currentPage + 1;
+  if ((option, inputValue)) {
+    getPageList(updatePage, option, inputValue);
+  } else {
     getPageList(updatePage);
-    currentPage = updatePage;
-  });
+  }
+  currentPage = updatePage;
+};
+const handleLeftBtn = (option, inputValue) => {
+  const updatePage = currentPage - 1;
+  if ((option, inputValue)) {
+    getPageList(updatePage, option, inputValue);
+  } else {
+    getPageList(updatePage);
+  }
+  currentPage = updatePage;
+};
 
-  leftBtn.addEventListener("click", () => {
-    const updatePage = currentPage - 1;
-    getPageList(currentPage - 1);
-    currentPage = updatePage;
-  });
-})();
+const handleLeftBtnListener = () => {
+  handleLeftBtn(option, inputValue);
+};
 
+const handleRightBtnListener = () => {
+  handleRightBtn(option, inputValue);
+};
+
+// 사이즈 변경시 개수 변경
 (() => {
   window.addEventListener("resize", () => {
     if (
@@ -142,7 +164,15 @@ async function getPageList(page, searchKey, searchValue) {
       window.innerHeight > 780 &&
       windowState !== "below1120Line2"
     ) {
+      input.value = "";
       currentPage = 0;
+      if (trigger) {
+        leftBtn.removeEventListener("click", handleLeftBtnListener);
+        rightBtn.removeEventListener("click", handleRightBtnListener);
+        leftBtn.addEventListener("click", handleLeftBtn);
+        rightBtn.addEventListener("click", handleRightBtn);
+        trigger = false;
+      }
       windowState = "below1120Line2";
       getPageList(0);
       return;
@@ -152,7 +182,15 @@ async function getPageList(page, searchKey, searchValue) {
       window.innerHeight <= 780 &&
       windowState !== "below1120Line1"
     ) {
+      input.value = "";
       currentPage = 0;
+      if (trigger) {
+        leftBtn.removeEventListener("click", handleLeftBtnListener);
+        rightBtn.removeEventListener("click", handleRightBtnListener);
+        leftBtn.addEventListener("click", handleLeftBtn);
+        rightBtn.addEventListener("click", handleRightBtn);
+        trigger = false;
+      }
       windowState = "below1120Line1";
       getPageList(0);
       return;
@@ -163,7 +201,15 @@ async function getPageList(page, searchKey, searchValue) {
       window.innerHeight > 780 &&
       windowState !== "below1420Line2"
     ) {
+      input.value = "";
       currentPage = 0;
+      if (trigger) {
+        leftBtn.removeEventListener("click", handleLeftBtnListener);
+        rightBtn.removeEventListener("click", handleRightBtnListener);
+        leftBtn.addEventListener("click", handleLeftBtn);
+        rightBtn.addEventListener("click", handleRightBtn);
+        trigger = false;
+      }
       windowState = "below1420Line2";
       getPageList(0);
       return;
@@ -174,7 +220,15 @@ async function getPageList(page, searchKey, searchValue) {
       window.innerHeight <= 780 &&
       windowState !== "below1420Line1"
     ) {
+      input.value = "";
       currentPage = 0;
+      if (trigger) {
+        leftBtn.removeEventListener("click", handleLeftBtnListener);
+        rightBtn.removeEventListener("click", handleRightBtnListener);
+        leftBtn.addEventListener("click", handleLeftBtn);
+        rightBtn.addEventListener("click", handleRightBtn);
+        trigger = false;
+      }
       windowState = "below1420Line1";
       getPageList(0);
       return;
@@ -184,7 +238,15 @@ async function getPageList(page, searchKey, searchValue) {
       window.innerHeight > 780 &&
       windowState !== "above1420Line2"
     ) {
+      input.value = "";
       currentPage = 0;
+      if (trigger) {
+        leftBtn.removeEventListener("click", handleLeftBtnListener);
+        rightBtn.removeEventListener("click", handleRightBtnListener);
+        leftBtn.addEventListener("click", handleLeftBtn);
+        rightBtn.addEventListener("click", handleRightBtn);
+        trigger = false;
+      }
       windowState = "above1420Line2";
       getPageList(0);
       return;
@@ -194,7 +256,15 @@ async function getPageList(page, searchKey, searchValue) {
       window.innerHeight <= 780 &&
       windowState !== "above1420Line1"
     ) {
+      input.value = "";
       currentPage = 0;
+      if (trigger) {
+        leftBtn.removeEventListener("click", handleLeftBtnListener);
+        rightBtn.removeEventListener("click", handleRightBtnListener);
+        leftBtn.addEventListener("click", handleLeftBtn);
+        rightBtn.addEventListener("click", handleRightBtn);
+        trigger = false;
+      }
       windowState = "above1420Line1";
       getPageList(0);
       return;
@@ -205,36 +275,87 @@ async function getPageList(page, searchKey, searchValue) {
 // 첫 창 list 불러오기
 (() => {
   window.addEventListener("DOMContentLoaded", () => {
-    if (window.innerWidth < 1120) {
-      windowState = "below1120";
+    leftBtn.addEventListener("click", handleLeftBtn);
+    rightBtn.addEventListener("click", handleRightBtn);
+    if (
+      window.innerWidth < 1120 &&
+      window.innerHeight > 780 &&
+      windowState !== "below1120Line2"
+    ) {
+      windowState = "below1120Line2";
       getPageList(0);
       return;
     }
-    if (window.innerWidth < 1420) {
-      windowState = "below1420";
+    if (
+      window.innerWidth < 1120 &&
+      window.innerHeight <= 780 &&
+      windowState !== "below1120Line1"
+    ) {
+      windowState = "below1120Line1";
       getPageList(0);
       return;
     }
-    windowState = "above1420";
-    getPageList(0);
+    if (
+      1120 <= window.innerWidth &&
+      window.innerWidth < 1420 &&
+      window.innerHeight > 780 &&
+      windowState !== "below1420Line2"
+    ) {
+      windowState = "below1420Line2";
+      getPageList(0);
+      return;
+    }
+    if (
+      1120 <= window.innerWidth &&
+      window.innerWidth < 1420 &&
+      window.innerHeight <= 780 &&
+      windowState !== "below1420Line1"
+    ) {
+      windowState = "below1420Line1";
+      getPageList(0);
+      return;
+    }
+    if (
+      window.innerWidth >= 1420 &&
+      window.innerHeight > 780 &&
+      windowState !== "above1420Line2"
+    ) {
+      windowState = "above1420Line2";
+      getPageList(0);
+      return;
+    }
+    if (
+      window.innerWidth >= 1420 &&
+      window.innerHeight <= 780 &&
+      windowState !== "above1420Line1"
+    ) {
+      windowState = "above1420Line1";
+      getPageList(0);
+      return;
+    }
   });
 })();
 
 // Search
 (() => {
-  const form = document.querySelector("form");
-  const input = form.querySelector("input");
-  const select = form.querySelector("select");
-
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const option = select.options[select.selectedIndex].value;
-    const inputValue = input.value;
+    option = select.options[select.selectedIndex].value;
+    inputValue = input.value;
     if (option === "vol" && isNaN(+inputValue)) {
       alert("숫자를 입력해주세요.");
       return;
     }
+    currentPage = 0;
     getPageList(0, option, inputValue);
+
+    if (!trigger) {
+      leftBtn.removeEventListener("click", handleLeftBtn);
+      rightBtn.removeEventListener("click", handleRightBtn);
+      leftBtn.addEventListener("click", handleLeftBtnListener);
+      rightBtn.addEventListener("click", handleRightBtnListener);
+      trigger = true;
+    }
   });
 })();
 
