@@ -39,21 +39,24 @@
   async function requestFetch(query, image, spirit, recipes) {
     return new Promise(async (resolve) => {
       const requestMethod = query ? "PUT" : "POST";
-      const response = await fetch(`http://127.0.0.1:8080/recipes${query}`, {
-        method: `${requestMethod}`,
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${getCookie("token")}`,
-        },
-        body: JSON.stringify({
-          name: name.value,
-          img: image,
-          spirit: spirit,
-          vol: vol.value,
-          ingredients: ingredients.value,
-          recipe: recipes,
-        }),
-      });
+      const response = await fetch(
+        `http://58.233.39.211:8001/recipes${query}`,
+        {
+          method: `${requestMethod}`,
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${getCookie("token")}`,
+          },
+          body: JSON.stringify({
+            name: name.value,
+            img: image,
+            spirit: spirit,
+            vol: vol.value,
+            ingredients: ingredients.value,
+            recipe: recipes,
+          }),
+        }
+      );
 
       if (response.status === 401) {
         resolve(response.status);

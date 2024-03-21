@@ -19,7 +19,7 @@ function getCookie(name) {
       <i class="fa-solid fa-circle-user"></i>
     `;
     linkSignIn.addEventListener("click", () => {
-      window.location.href = "http://127.0.0.1:5500/view/sign-in.html";
+      window.location.href = "/view/sign-in.html";
     });
   }
 
@@ -29,7 +29,9 @@ function getCookie(name) {
       <span>로그아웃</span>
     `;
     linkSignIn.addEventListener("click", () => {
-      window.location.href = "http://127.0.0.1:5500/index.html";
+      document.cookie =
+        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      window.location.href = "/index.html";
     });
   }
 })();

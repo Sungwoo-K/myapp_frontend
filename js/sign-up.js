@@ -59,7 +59,7 @@ function getCookie(name) {
       return;
     }
 
-    const responce = await fetch("http://127.0.0.1:8080/auth/signup", {
+    const responce = await fetch("http://58.233.39.211:8001/auth/signup", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -80,6 +80,6 @@ function getCookie(name) {
 
     alert(result.message);
 
-    window.location.href = "http://127.0.0.1:5500/view/sign-in.html";
+    window.location.href = "/view/sign-in.html";
   });
 })();

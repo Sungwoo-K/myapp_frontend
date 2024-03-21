@@ -24,11 +24,14 @@
     };
 
     const query = window.location.search;
-    const response = await fetch(`http://127.0.0.1:8080/recipes/edit${query}`, {
-      headers: {
-        Authorization: `Bearer ${getCookie("token")}`,
-      },
-    });
+    const response = await fetch(
+      `http://58.233.39.211:8001/recipes/edit${query}`,
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+        },
+      }
+    );
 
     if (response.status === 401) {
       alert("게시물을 수정할 권한이 없습니다.");

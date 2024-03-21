@@ -12,11 +12,14 @@
     const taste = form.querySelector("article:nth-of-type(6) input");
     const finish = form.querySelector("article:nth-of-type(7) input");
     const query = window.location.search;
-    const response = await fetch(`http://127.0.0.1:8080/reviews/edit${query}`, {
-      headers: {
-        Authorization: `Bearer ${getCookie("token")}`,
-      },
-    });
+    const response = await fetch(
+      `http://58.233.39.211:8001/reviews/edit${query}`,
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("token")}`,
+        },
+      }
+    );
 
     if (response.status === 401) {
       alert("게시물을 수정할 권한이 없습니다.");

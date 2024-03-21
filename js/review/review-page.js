@@ -68,9 +68,9 @@ async function getPageList(page, searchKey, searchValue) {
   }
 
   if (searchKey && searchValue) {
-    url = `http://127.0.0.1:8080/reviews/paging/search?page=${page}&size=${pageSize}&${searchKey}=${searchValue}`;
+    url = `http://58.233.39.211:8001/reviews/paging/search?page=${page}&size=${pageSize}&${searchKey}=${searchValue}`;
   } else {
-    url = `http://127.0.0.1:8080/reviews/paging?page=${page}&size=${pageSize}`;
+    url = `http://58.233.39.211:8001/reviews/paging?page=${page}&size=${pageSize}`;
   }
   const response = await fetch(url);
   const result = await response.json();
@@ -228,7 +228,9 @@ const handleRightBtnListener = () => {
   list.addEventListener("click", async (e) => {
     if (e.target.tagName === "BUTTON") {
       const no = e.target.closest("div").dataset.no;
-      const response = await fetch(`http://127.0.0.1:8080/reviews?no=${no}`);
+      const response = await fetch(
+        `http://58.233.39.211:8001/reviews?no=${no}`
+      );
       const result = await response.json();
       const modal = document.createElement("div");
       modal.innerHTML = /*html*/ `
@@ -295,12 +297,15 @@ const handleRightBtnListener = () => {
 
       removeDataBtn.addEventListener("click", async () => {
         const no = removeBtn.closest("section").dataset.no;
-        const responce = await fetch(`http://127.0.0.1:8080/reviews/${no}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${getCookie("token")}`,
-          },
-        });
+        const responce = await fetch(
+          `http://58.233.39.211:8001/reviews/${no}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${getCookie("token")}`,
+            },
+          }
+        );
 
         if (responce.status === 401) {
           alert("삭제할 권한이 없습니다.");
