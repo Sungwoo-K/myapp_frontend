@@ -59,7 +59,7 @@ function getCookie(name) {
       return;
     }
 
-    const responce = await fetch("http://58.233.39.211:8001/auth/signup", {
+    const responce = await fetch("https://www.woohyo.store/api/auth/signup", {
       method: "POST",
       headers: {
         "content-type": "application/json",

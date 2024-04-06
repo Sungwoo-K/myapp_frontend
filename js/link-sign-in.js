@@ -30,7 +30,7 @@ function getCookie(name) {
     `;
     linkSignIn.addEventListener("click", () => {
       document.cookie =
-        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        "token=; expires=Thu, 01 Jan 1970 00:00:01 GMT; domain=www.woohyo.store; path=/;";
       window.location.href = "/index.html";
     });
   }

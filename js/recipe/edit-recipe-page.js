@@ -25,7 +25,7 @@
 
     const query = window.location.search;
     const response = await fetch(
-      `http://58.233.39.211:8001/recipes/edit${query}`,
+      `https://www.woohyo.store/api/recipes/edit${query}`,
       {
         headers: {
           Authorization: `Bearer ${getCookie("token")}`,

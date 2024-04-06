@@ -68,9 +68,9 @@ async function getPageList(page, searchKey, searchValue) {
   }
 
   if (searchKey && searchValue) {
-    url = `http://58.233.39.211:8001/reviews/paging/search?page=${page}&size=${pageSize}&${searchKey}=${searchValue}`;
+    url = `https://www.woohyo.store/api/reviews/paging/search?page=${page}&size=${pageSize}&${searchKey}=${searchValue}`;
   } else {
-    url = `http://58.233.39.211:8001/reviews/paging?page=${page}&size=${pageSize}`;
+    url = `https://www.woohyo.store/api/reviews/paging?page=${page}&size=${pageSize}`;
   }
   const response = await fetch(url);
   const result = await response.json();
@@ -229,7 +229,7 @@ const handleRightBtnListener = () => {
     if (e.target.tagName === "BUTTON") {
       const no = e.target.closest("div").dataset.no;
       const response = await fetch(
-        `http://58.233.39.211:8001/reviews?no=${no}`
+        `https://www.woohyo.store/api/reviews?no=${no}`
       );
       const result = await response.json();
       const modal = document.createElement("div");
@@ -298,7 +298,7 @@ const handleRightBtnListener = () => {
       removeDataBtn.addEventListener("click", async () => {
         const no = removeBtn.closest("section").dataset.no;
         const responce = await fetch(
-          `http://58.233.39.211:8001/reviews/${no}`,
+          `https://www.woohyo.store/api/reviews/${no}`,
           {
             method: "DELETE",
             headers: {

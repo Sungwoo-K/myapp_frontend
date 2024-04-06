@@ -38,7 +38,7 @@
     return new Promise(async (resolve) => {
       const requestMethod = query ? "PUT" : "POST";
       const response = await fetch(
-        `http://58.233.39.211:8001/reviews${query}`,
+        `https://www.woohyo.store/api/reviews${query}`,
         {
           method: `${requestMethod}`,
           headers: {

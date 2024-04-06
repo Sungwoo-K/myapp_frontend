@@ -13,7 +13,7 @@
     const finish = form.querySelector("article:nth-of-type(7) input");
     const query = window.location.search;
     const response = await fetch(
-      `http://58.233.39.211:8001/reviews/edit${query}`,
+      `https://www.woohyo.store/api/reviews/edit${query}`,
       {
         headers: {
           Authorization: `Bearer ${getCookie("token")}`,
